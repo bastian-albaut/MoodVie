@@ -4,7 +4,26 @@ import java.sql.*;
 
 public class PostGreUserDao extends UserDao{
     private DatabaseConnection  dbConnection= new DatabaseConnection();
-    Connection connection = dbConnection.getConnection();
+    private Connection connection;
+
+    public PostGreUserDao() {
+        this.connection = dbConnection.getConnection();
+        createTable();
+    }
+
+    private void createTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS users (" +
+                "id SERIAL PRIMARY KEY, " +
+                "name VARCHAR(100), " +
+                "email VARCHAR(100))";
+
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la création de la table : " + e.getMessage(), e);
+        }
+    }
+
 
 
     @Override
