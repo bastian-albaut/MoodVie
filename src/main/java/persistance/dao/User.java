@@ -4,16 +4,18 @@ public class User {
     private int id;
     private String name;
     private String email;
+
+    private String password;
     // autres propriétés selon vos besoins
 
     // Constructeurs
     public User() {
     }
 
-    public User(int id, String name, String email) {
-        this.id = id;
+    public User(String name, String email, String password){
         this.name = name;
         this.email = email;
+        this.password = password;
     }
 
     // Getters et Setters
@@ -23,6 +25,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public String getPassword(){
+        return this.password;
     }
 
     public String getName() {
@@ -48,6 +58,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + this.password + '\'' +
                 '}';
     }
 }

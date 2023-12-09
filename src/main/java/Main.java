@@ -1,19 +1,20 @@
-import persistance.dao.*;
-import pw.mihou.dotenv.Dotenv;
-import pw.mihou.dotenv.types.NormalDotenv;
-//postgres://moodviedb_user:Q6Awtn1Z4hSGXpjDH9gQrxJIgo6Mr2eB@dpg-cloe15ap0o1s73f8su0g-a.frankfurt-postgres.render.com/moodviedb
+import business.UserFacade;
+import persistance.dao.User;
+
 public class Main {
-    public static void main(String[] args) {;
-        NormalDotenv dotenv = Dotenv.as();
-        System.out.println(dotenv.get("JDBC_DATABASE_URL"));
+    public static void main(String[] args) {
 
-        DaoFactory Factory = new PostGreFactory();
-        UserDao UserDao = Factory.getUserDao();
-        // Utilisez sqlUserDao pour les opérations avec la base de données SQL
+        UserFacade userFacade = UserFacade.getInstance();
+        Boolean resRegister = userFacade.register("Doe","Test", "Test");
+        Boolean resLogin = userFacade.login("Test", "Test");
+        User user = userFacade.getUser();
+        System.out.println("user : " + user);
 
-        UserDao.addUser(new User(1, "Doe", "Test"));
+        //userFacade.DeleteUser();
+        System.out.println("resRegister : " + resRegister);
+        System.out.println("resLogin : " + resLogin);
 
-        // Utilisez mongoUserDao pour les opérations avec MongoDB
+
     }
 }
 

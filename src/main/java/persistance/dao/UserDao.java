@@ -2,7 +2,8 @@ package persistance.dao;
 
 public abstract class UserDao {
     public abstract void addUser(User user);
-    abstract User getUser(int userId);
-    abstract void updateUser(User user);
-    abstract void deleteUser(int userId);
+    public abstract User getUser(int userId);
+    public abstract User getUser(String email);
+    public abstract void updateUser(User user);
+    public abstract void deleteUser(int userId);
 }

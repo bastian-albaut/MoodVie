@@ -1,10 +1,20 @@
 package persistance.dao;
 
-public class PostGreFactory implements DaoFactory {
+/**
+ * PostGreFactory est une implémentation de AbstractDaoFactory
+ * Permet de gérer les DAO
+ */
+
+public class PostGreFactory extends AbstractDaoFactory {
+    UserDao userDao;
+
     @Override
     public UserDao getUserDao() {
         // retourne une implémentation de persistance.dao.UserDao spécifique à SQL
-        return new PostGreUserDao();
+        if (userDao == null) {
+            userDao = new PostGreUserDao();
+        }
+        return userDao;
     }
     // implémentations pour d'autres DAO si nécessaire
 }
