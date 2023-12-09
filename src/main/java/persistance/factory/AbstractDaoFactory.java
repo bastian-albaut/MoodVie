@@ -1,4 +1,7 @@
-package persistance.dao;
+package persistance.factory;
+
+import persistance.dao.UserDao;
+
 /**
  * DaoFactory est un singleton
  * Permet de gérer les DAO

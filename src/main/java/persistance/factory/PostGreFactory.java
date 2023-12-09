@@ -1,4 +1,7 @@
-package persistance.dao;
+package persistance.factory;
+
+import persistance.dao.PostGreUserDao;
+import persistance.dao.UserDao;
 
 /**
  * PostGreFactory est une implémentation de AbstractDaoFactory

@@ -1,4 +1,7 @@
 package persistance.dao;
+import model.User;
+import persistance.database.DatabaseConnection;
+
 import java.sql.*;
 
 

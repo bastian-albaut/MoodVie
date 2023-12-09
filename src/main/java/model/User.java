@@ -1,4 +1,4 @@
-package persistance.dao;
+package model;
 
 public class User {
     private int id;
@@ -54,7 +54,7 @@ public class User {
     // Méthode toString() pour l'affichage
     @Override
     public String toString() {
-        return "persistance.dao.User{" +
+        return "model.User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
