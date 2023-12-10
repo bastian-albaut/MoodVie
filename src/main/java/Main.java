@@ -5,16 +5,11 @@ public class Main {
     public static void main(String[] args) {
 
         UserFacade userFacade = UserFacade.getInstance();
-        Boolean resRegister = userFacade.register("Doe","Test", "Test");
-        Boolean resLogin = userFacade.login("Test", "Test");
-        User user = userFacade.getUser();
-        System.out.println("user : " + user);
+        // Boolean resRegister = userFacade.register("Doe","Test", "Test");
+        User user = userFacade.login("Test", "Test");
+        System.out.println("user login : " + user);
 
         //userFacade.DeleteUser();
-        System.out.println("resRegister : " + resRegister);
-        System.out.println("resLogin : " + resLogin);
-
-
     }
 }
 

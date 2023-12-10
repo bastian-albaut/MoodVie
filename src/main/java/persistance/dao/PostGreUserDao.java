@@ -148,4 +148,23 @@ public class PostGreUserDao extends UserDao{
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Cette méthode permet de connecter un utilisateur
+     * @param email l'email de l'utilisateur à connecter
+     * @param password le mot de passe de l'utilisateur à connecter
+     * @return l'utilisateur connecté
+     */
+    public User login(String email, String password) throws RuntimeException{
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
+            ps.setString(1, email);
+            ps.setString(2, password);
+            User user = getUser(ps);
+            if (user != null) return user;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }
