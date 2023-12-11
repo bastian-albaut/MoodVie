@@ -1,4 +1,4 @@
-import business.UserFacade;
+import business.facade.UserFacade;
 import model.User;
 
 public class Main {

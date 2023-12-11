@@ -119,7 +119,7 @@ public class PostGreUserDao extends UserDao{
     /**
      * Cette méthode récupère un utilisateur dans la base de données
      * @param userId l'identifiant de l'utilisateur à récupérer
-     *               @return l'utilisateur récupéré
+     * @return l'utilisateur récupéré
      */
     public User getUser(int userId) throws RuntimeException{
         // code pour récupérer un utilisateur dans une base de données SQL

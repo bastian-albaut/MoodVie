@@ -7,6 +7,9 @@ import persistance.factory.AbstractDaoFactory;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import business.facade.UserFacade;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,24 +24,22 @@ public class UserFacadeTest {
     
     @Test
     public void testLogin() {
-        // Mock UserDao
-        UserDao mockedUserDao = mock(UserDao.class);
-
-        // Mock AbstractDaoFactory
-        AbstractDaoFactory mockedDaoFactory = mock(AbstractDaoFactory.class);
-        when(mockedDaoFactory.getUserDao()).thenReturn(mockedUserDao);
-
-        // Mock the static method getFactory() in AbstractDaoFactory
+        // Mock the AbstractDaoFactory class
+        AbstractDaoFactory abstractDaoFactoryMock = mock(AbstractDaoFactory.class);
         PowerMockito.mockStatic(AbstractDaoFactory.class);
-        when(AbstractDaoFactory.getFactory()).thenReturn(mockedDaoFactory);
+        when(AbstractDaoFactory.getFactory()).thenReturn(abstractDaoFactoryMock);
 
-        String name = "Test";
-        String email = "test@example.com";
-        String password = "password123";
+        // Mock the UserDao class
+        UserDao userDaoMock = mock(UserDao.class);
+        when(abstractDaoFactoryMock.getUserDao()).thenReturn(userDaoMock);
 
-        // Setup the expected behavior of the login method
+        // Mock the getUser method
+        String name= "Doe";
+        String email = "Test";
+        String password = "Test";
+
         User expectedUser = new User(name, email, password);
-        when(mockedUserDao.login(eq(email), eq(password))).thenReturn(expectedUser);
+        when(userDaoMock.getUser(eq(email))).thenReturn(expectedUser);
 
         // Test the login method
         UserFacade userFacade = UserFacade.getInstance();

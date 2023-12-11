@@ -8,5 +8,4 @@ public abstract class UserDao {
     public abstract User getUser(String email);
     public abstract void updateUser(User user);
     public abstract void deleteUser(int userId);
-    public abstract User login(String email, String password);
 }
