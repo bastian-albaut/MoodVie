@@ -1,5 +1,5 @@
-import com.moodvie.model.facade.UserFacade;
-import com.moodvie.model.User;
+import com.moodvie.business.facade.UserFacade;
+import com.moodvie.persistance.model.User;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.moodvie.model;
+package com.moodvie.persistance.model;
 
 public class User {
     private int id;

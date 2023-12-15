@@ -1,6 +1,6 @@
-package com.moodvie.model.persistance.factory;
+package com.moodvie.persistance.factory;
 
-import com.moodvie.model.persistance.dao.UserDao;
+import com.moodvie.persistance.dao.UserDao;
 
 /**
  * DaoFactory est un singleton
