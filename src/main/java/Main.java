@@ -1,4 +1,4 @@
-import business.UserFacade;
+import business.facade.UserFacade;
 import model.User;
 
 public class Main {
@@ -8,6 +8,8 @@ public class Main {
         // Boolean resRegister = userFacade.register("Doe","Test", "Test");
         User user = userFacade.login("Test", "Test");
         System.out.println("user login : " + user);
+        User user2 = userFacade.login("a", "a");
+        System.out.println("user2 login : " + user2);
 
         //userFacade.DeleteUser();
     }
