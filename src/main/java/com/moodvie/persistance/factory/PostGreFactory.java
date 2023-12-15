@@ -1,7 +1,7 @@
-package persistance.factory;
+package com.moodvie.model.persistance.factory;
 
-import persistance.dao.PostGreUserDao;
-import persistance.dao.UserDao;
+import com.moodvie.model.persistance.dao.PostGreUserDao;
+import com.moodvie.model.persistance.dao.UserDao;
 
 /**
  * PostGreFactory est une implémentation de AbstractDaoFactory

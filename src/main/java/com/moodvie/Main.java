@@ -1,5 +1,5 @@
-import business.facade.UserFacade;
-import model.User;
+import com.moodvie.model.facade.UserFacade;
+import com.moodvie.model.User;
 
 public class Main {
     public static void main(String[] args) {

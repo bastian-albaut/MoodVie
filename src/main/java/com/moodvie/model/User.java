@@ -1,4 +1,4 @@
-package model;
+package com.moodvie.model;
 
 public class User {
     private int id;

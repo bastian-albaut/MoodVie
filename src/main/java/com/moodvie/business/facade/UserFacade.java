@@ -1,8 +1,8 @@
-package business.facade;
+package com.moodvie.model.facade;
 
-import model.User;
-import persistance.dao.UserDao;
-import persistance.factory.AbstractDaoFactory;
+import com.moodvie.model.persistance.dao.UserDao;
+import com.moodvie.model.persistance.factory.AbstractDaoFactory;
+import com.moodvie.model.User;
 
 /**
  * UserFacade est un singleton

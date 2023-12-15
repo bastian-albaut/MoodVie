@@ -1,6 +1,6 @@
-package persistance.dao;
+package com.moodvie.model.persistance.dao;
 
-import model.User;
+import com.moodvie.model.User;
 
 public abstract class UserDao {
     public abstract void addUser(User user);
