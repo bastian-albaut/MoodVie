@@ -1,17 +1,23 @@
-import com.moodvie.business.facade.UserFacade;
-import com.moodvie.persistance.model.User;
+package com.moodvie;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/app/hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static void main(String[] args) {
-
-        UserFacade userFacade = UserFacade.getInstance();
-        // Boolean resRegister = userFacade.register("Doe","Test", "Test");
-        User user = userFacade.login("Test", "Test");
-        System.out.println("user login : " + user);
-        User user2 = userFacade.login("a", "a");
-        System.out.println("user2 login : " + user2);
-
-        //userFacade.DeleteUser();
+        launch();
     }
 }
-

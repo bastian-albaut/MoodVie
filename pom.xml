@@ -16,6 +16,17 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21.0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>pw.mihou</groupId>
             <artifactId>Dotenv</artifactId>
             <version>1.0.1</version>
@@ -96,7 +107,7 @@
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>Main</mainClass>
+                        <mainClass>com.moodvie.Main</mainClass>
                     </manifest>
                     </archive>
                 </configuration>
@@ -115,7 +126,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Main</mainClass>
+                                    <mainClass>com.moodvie.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
