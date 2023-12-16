@@ -12,8 +12,9 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/app/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
         stage.setScene(scene);
+        stage.setMinHeight(600);
+        stage.setMinWidth(800);
         stage.show();
     }
 
