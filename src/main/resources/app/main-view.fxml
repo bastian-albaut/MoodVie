@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- MainView.fxml -->
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.MainController" style="-fx-background-color: #FFFFFF;">
+    <top>
+        <!-- NavBar FXML here -->
+        <HBox style="-fx-background-color: #333; -fx-padding: 10;" spacing="20" alignment="CENTER_RIGHT">
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Connexion" onAction="#loadLoginView" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2;"/>
+            <Button text="Inscription" onAction="#loadRegisterView" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2;"/>
+        </HBox>
+    </top>
+    <center>
+        <StackPane fx:id="contentArea">
+            <!-- Content will be loaded here -->
+        </StackPane>
+    </center>
+</BorderPane>
+
