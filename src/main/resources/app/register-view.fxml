@@ -1,32 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.shape.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.RegisterController" style="-fx-background-color: #FFFFFF;">
-    <VBox layoutX="50" layoutY="50" spacing="15" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50" style="-fx-background-color: #FDF1B8; -fx-border-color: black; -fx-border-radius: 5;">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.RegisterController" style="-fx-background-color: white;">
+    <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
         <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
+            <Insets top="10" right="50" left="50"/>
         </padding>
         <Label text="Inscription" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-        <GridPane hgap="10" vgap="15">
-            <TextField fx:id="nameField" promptText="Nom" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <TextField fx:id="surnameField" promptText="Prénom" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <TextField fx:id="usernameField" promptText="Pseudo" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            <DatePicker fx:id="birthdatePicker" promptText="Date de naissance" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            <TextField fx:id="emailField" promptText="Adresse email" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-            <TextField fx:id="emailConfirmationField" promptText="Confirmation adresse email" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-            <PasswordField fx:id="passwordField" promptText="Mot de passe" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-            <PasswordField fx:id="passwordConfirmationField" promptText="Confirmation mot de passe" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-            <!-- Icons and other labels can be added to GridPane.columnIndex="0" -->
+        <GridPane hgap="10" vgap="20" alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="30"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200"/>
+            </columnConstraints>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/email.png"/>
+                </ImageView>
+                <TextField fx:id="surnameField" promptText="Nom"/>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/mot-de-passe.png"/>
+                </ImageView>
+                <PasswordField fx:id="passwordField" promptText="Nom"/>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/email.png"/>
+                </ImageView>
+                <TextField fx:id="emailField" promptText="Nom"/>
+            </HBox>
         </GridPane>
-        <CheckBox fx:id="termsCheckBox" text="J'accepte les conditions d'utilisations"/>
-        <HBox spacing="10">
-            <Button fx:id="registerButton" text="Inscription" onAction="#handleRegister" style="-fx-background-color: #E4E4E4;"/>
-            <Button fx:id="backButton" text="Retour" onAction="#handleBack" style="-fx-background-color: #E4E4E4;"/>
+        <CheckBox fx:id="termsCheckBox" text="J'accepte les conditions d'utilisation" />
+        <HBox spacing="15" alignment="CENTER">
+            <Button fx:id="registerButton"
+                    onAction="#handleRegister"
+                    text="Inscription"
+                    style="-fx-background-color: #E4E4E4;" minWidth="100"/>
+            <Button fx:id="lgoinButton"
+                    onAction="#handleLogin"
+                    text="Connection"
+                    style="-fx-background-color: #E4E4E4;" minWidth="100"/>
         </HBox>
     </VBox>
 </AnchorPane>

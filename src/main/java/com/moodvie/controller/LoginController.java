@@ -3,6 +3,7 @@ package com.moodvie.controller;
 
 import com.moodvie.business.facade.UserFacade;
 import com.moodvie.persistance.model.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -11,6 +12,8 @@ import javafx.scene.control.PasswordField;
 
 public class LoginController {
 
+    public Button loginButton;
+    public Button registerButton;
     @FXML
     private TextField usernameField;
 
@@ -44,4 +47,6 @@ public class LoginController {
         }
     }
 
+    public void handleShowRegisterView(ActionEvent actionEvent) {
+    }
 }

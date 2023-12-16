@@ -12,9 +12,7 @@
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
             <ImageView fitHeight="107.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@picture/46894.png" />
-                </image>
+                <Image url="@picture/46894.png"/>
             </ImageView>
             <Label text="Moodvie">
                 <font>
@@ -39,29 +37,25 @@
         </VBox>
     </left>
     <center>
-        <GridPane alignment="CENTER" hgap="10" vgap="10" minWidth="400" minHeight="400">
+        <VBox alignment="CENTER" spacing="20" minWidth="400">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets top="50" bottom="20"/>
             </padding>
-            <Label text="Connexion" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
-                <font>
-                    <Font name="Didot Bold" size="24"/>
-                </font>
-            </Label>
-            <Label text="Username" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                <font>
-                    <Font name="Didot Bold" size="14"/>
-                </font>
-            </Label>
-            <TextField fx:id="usernameField" promptText="username" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="Password" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                <font>
-                    <Font name="Didot Bold" size="14"/>
-                </font>
-            </Label>
-            <PasswordField fx:id="passwordField" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            <Button fx:id="loginButton" text="Login" onAction="#handleLoginAction" style="-fx-background-color: #FDF1B8;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-            <Button text="Cancel" style="-fx-background-color: #FDF1B8;" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        </GridPane>
+            <Label text="Connexion" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+            <GridPane hgap="10" vgap="10" alignment="CENTER">
+                <Label text="Username" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-size: 14;"/>
+                <TextField fx:id="usernameField" promptText="username" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Password" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-size: 14;"/>
+                <PasswordField fx:id="passwordField" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <HBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" alignment="CENTER_RIGHT" spacing="10">
+                    <Button fx:id="loginButton" text="Login" onAction="#handleLoginAction" style="-fx-background-color: #FDF1B8;"/>
+                    <Button text="Cancel" style="-fx-background-color: #FDF1B8;"/>
+                </HBox>
+            </GridPane>
+            <HBox spacing="5" alignment="CENTER">
+                <Label text="Not yet a member?" style="-fx-font-size: 14;"/>
+                <Button fx:id="registerButton" text="Sign up now" onAction="#handleShowRegisterView" style="-fx-background-color: #FDF1B8; -fx-underline: true;"/>
+            </HBox>
+        </VBox>
     </center>
 </BorderPane>
