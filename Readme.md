@@ -71,3 +71,9 @@ mvn package
 ```bash
 java -jar target/MoodVieMaeven-1.0-SNAPSHOT.jar
 ```
+
+### 4. Run the JavaFX application
+
+```bash
+mvn javafx:run
+```

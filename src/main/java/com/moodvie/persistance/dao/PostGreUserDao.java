@@ -1,6 +1,6 @@
-package persistance.dao;
-import model.User;
-import persistance.database.DatabaseConnection;
+package com.moodvie.persistance.dao;
+import com.moodvie.persistance.model.User;
+import com.moodvie.persistance.database.DatabaseConnection;
 
 import java.sql.*;
 

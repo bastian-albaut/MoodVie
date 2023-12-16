@@ -1,14 +1,14 @@
 package business;
 
-import model.User;
-import persistance.dao.UserDao;
-import persistance.factory.AbstractDaoFactory;
+import com.moodvie.persistance.model.User;
+import com.moodvie.persistance.dao.UserDao;
+import com.moodvie.persistance.factory.AbstractDaoFactory;
 
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import business.facade.UserFacade;
+import com.moodvie.business.facade.UserFacade;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

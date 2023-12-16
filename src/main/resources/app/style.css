@@ -1,0 +1,10 @@
+.button {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}
+
+.hbox {
+    -fx-background-color: #333;
+    -fx-padding: 10;
+}

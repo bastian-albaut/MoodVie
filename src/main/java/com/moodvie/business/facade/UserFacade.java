@@ -1,8 +1,8 @@
-package business.facade;
+package com.moodvie.business.facade;
 
-import model.User;
-import persistance.dao.UserDao;
-import persistance.factory.AbstractDaoFactory;
+import com.moodvie.persistance.dao.UserDao;
+import com.moodvie.persistance.factory.AbstractDaoFactory;
+import com.moodvie.persistance.model.User;
 
 /**
  * UserFacade est un singleton
@@ -95,7 +95,7 @@ public class UserFacade {
      * Cette méthode permet de supprimer l'utilisateur courant
      * @return true si l'utilisateur a été supprimé, false sinon
      */
-    public Boolean DeleteUser(){
+    public Boolean deleteUser(){
         UserDao UserDao = abstractDaoFactory.getUserDao();
 
         try {
