@@ -95,7 +95,7 @@ public class UserFacade {
      * Cette méthode permet de supprimer l'utilisateur courant
      * @return true si l'utilisateur a été supprimé, false sinon
      */
-    public Boolean DeleteUser(){
+    public Boolean deleteUser(){
         UserDao UserDao = abstractDaoFactory.getUserDao();
 
         try {
