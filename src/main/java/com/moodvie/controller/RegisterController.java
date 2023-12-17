@@ -88,7 +88,7 @@ public class RegisterController extends AbstractController {
             return;
         }
 
-        Boolean success = userFacade.register(pseudo, email, password);
+        Boolean success = userFacade.register(pseudo, firstName, lastName, birthdate, email, password);
 
         if (success) {
             // Afficher un message de succès

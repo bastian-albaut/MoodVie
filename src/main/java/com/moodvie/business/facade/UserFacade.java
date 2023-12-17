@@ -31,7 +31,7 @@ public class UserFacade {
      * @param password mot de passe de l'utilisateur
      * @return true si l'utilisateur a été créé, false sinon
      */
-    public Boolean register(String name, String email, String password) {
+    public Boolean register(String pseudo,String firstname,String lastname,String birthday, String email, String password) {
         UserDao UserDao = abstractDaoFactory.getUserDao();
 
         // Vérifie si un utilisateur existe déjà pour cet email
@@ -39,7 +39,7 @@ public class UserFacade {
             return false;
         }
 
-        User user = new User(name,email,password);
+        User user = new User(pseudo,firstname,lastname,birthday,email,password);
 
         try{
             UserDao.addUser(user);
