@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 
-public class LoginController {
+public class LoginController extends AbstractController{
 
     public Button loginButton;
     public Button registerButton;
@@ -48,5 +48,6 @@ public class LoginController {
     }
 
     public void handleShowRegisterView(ActionEvent actionEvent) {
+        mainController.loadRegisterView();
     }
 }

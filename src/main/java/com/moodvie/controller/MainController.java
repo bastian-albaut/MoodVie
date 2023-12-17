@@ -25,7 +25,10 @@ public class MainController {
 
     private void loadView(String fxmlPath) {
         try {
-            Parent view = FXMLLoader.load(getClass().getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent view = loader.load();
+            AbstractController controller = loader.getController();
+            controller.setMainController(this);
             contentArea.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();

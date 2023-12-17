@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
-public class RegisterController {
+import java.util.Date;
+
+public class RegisterController extends AbstractController {
 
     private final UserFacade userFacade = UserFacade.getInstance();
 
@@ -23,18 +25,35 @@ public class RegisterController {
     @FXML
     public TextField surnameField;
     public PasswordField passwordField;
+    
+    public PasswordField confirmPasswordField;
+    public TextField lastNameField;
+    public DatePicker birthdatePicker;
+    public TextField firstNameField;
+    public TextField confirmEmailField;
 
 
     @FXML
     private void handleRegister() {
-        // Logique d'inscription
-        String name = surnameField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
 
-        Boolean success = userFacade.register(name, email, password);
+        // Logique d'inscription
+        String pseudo = surnameField.getText();
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+
+        String birthdate = null;
+        if (birthdatePicker.getValue() != null) {
+            birthdate = birthdatePicker.getValue().toString();
+        }
+
+        String email = emailField.getText();
+        String confirmEmail = confirmEmailField.getText();
+
+        String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+
         //On vérifie si les champs sont remplis
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (pseudo.isEmpty() || email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthdate.isEmpty() || confirmEmail.isEmpty() || confirmPassword.isEmpty()) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Échec de l'inscription");
             errorAlert.setHeaderText(null);
@@ -42,6 +61,23 @@ public class RegisterController {
             errorAlert.showAndWait();
             return;
         }
+        if (!email.equals(confirmEmail)) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Échec de l'inscription");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Les emails ne correspondent pas !");
+            errorAlert.showAndWait();
+            return;
+        }
+        if (!password.equals(confirmPassword)) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Échec de l'inscription");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Les mots de passe ne correspondent pas !");
+            errorAlert.showAndWait();
+            return;
+        }
+
         //On vérifie si les conditions d'utilisation sont acceptées
         else if (!termsCheckBox.isSelected()) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -51,6 +87,9 @@ public class RegisterController {
             errorAlert.showAndWait();
             return;
         }
+
+        Boolean success = userFacade.register(pseudo, email, password);
+
         if (success) {
             // Afficher un message de succès
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -72,6 +111,8 @@ public class RegisterController {
 
     @FXML
     private void handleLogin() {
-
+        if (mainController != null) {
+            mainController.loadLoginView();
+        }
     }
 }
