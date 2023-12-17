@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox fx:id="navBarContainer" styleClass="navBarContainer"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.moodvie.controller.component.navBar.NavBarController"
+      alignment="TOP_RIGHT"
+      spacing="10"
+        HBox.hgrow="ALWAYS"
+>
+    <!-- Content -->
+</HBox>

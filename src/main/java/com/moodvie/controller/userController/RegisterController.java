@@ -1,13 +1,14 @@
-package com.moodvie.controller;
+package com.moodvie.controller.userController;
 
 import com.moodvie.business.facade.UserFacade;
+import com.moodvie.controller.NavigationController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.util.Date;
 
-public class RegisterController extends AbstractController {
+public class RegisterController {
 
     private final UserFacade userFacade = UserFacade.getInstance();
 
@@ -111,8 +112,6 @@ public class RegisterController extends AbstractController {
 
     @FXML
     private void handleLogin() {
-        if (mainController != null) {
-            mainController.loadLoginView();
-        }
+        NavigationController.getInstance().loadLoginView();
     }
 }

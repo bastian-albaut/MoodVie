@@ -14,7 +14,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/main-view.fxml"));
             Parent view = loader.load();
-            stage.setScene(new Scene(view));
+
+            Scene scene = new Scene(view);
+            String css = getClass().getResource("/app/style.css").toExternalForm();
+            scene.getStylesheets().add(css);
+
+            stage.setScene(scene);
             stage.setMinHeight(600);
             stage.setMinWidth(800);
             stage.show();

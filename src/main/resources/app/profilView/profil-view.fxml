@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.userController.ProfileController" stylesheets="@profil.css">
+    <left>
+        <VBox styleClass="menu" spacing="10" >
+            <Button text="Tableau de bord" styleClass="menu-button"/>
+            <!-- Add other buttons here -->
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20">
+
+            <VBox styleClass="profile-image"  alignment="CENTER">
+                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../icones/compte.png"/>
+                </ImageView>
+                <Button text="Modifier photo de profil" styleClass="profile-image-button"/>
+            </VBox>
+            <VBox spacing="10">
+                <Label text="Informations personnelles" styleClass="title"/>
+                <TextField fx:id="pseudoField" promptText="Nom d'utilisateur" styleClass="input-field"/>
+                <TextField fx:id="lastNameField" promptText="Nom" styleClass="input-field"/>
+                <TextField fx:id="firstNameField" promptText="Prénom" styleClass="input-field"/>
+                <TextField fx:id="emailField" promptText="Email" styleClass="input-field"/>
+                <DatePicker fx:id="birthDateField" promptText="Date de naissance" styleClass="input-field"/>
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="input-field"/>
+            </VBox>
+            <HBox spacing="10">
+                <Button text="Valider" styleClass="validate-button" onAction="#updateUser"/>
+                <Button text="Annuler" styleClass="cancel-button"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

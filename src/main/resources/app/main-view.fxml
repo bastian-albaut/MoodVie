@@ -10,15 +10,14 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.MainController" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css">
     <top>
         <!-- NavBar FXML here -->
-        <HBox styleClass="hbox">
-            <Region HBox.hgrow="ALWAYS"/>
-            <Button text="Connexion" onAction="#loadLoginView" styleClass="button"/>
-        </HBox>
+        <fx:include source="component/navBar/navBar.fxml" />
     </top>
     <center>
-        <StackPane fx:id="contentArea">
-            <!-- Content will be loaded here -->
-        </StackPane>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <StackPane fx:id="contentArea" >
+                <!-- Content will be loaded here -->
+            </StackPane>
+        </ScrollPane>
     </center>
 </BorderPane>
 

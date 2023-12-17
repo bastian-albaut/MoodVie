@@ -1,7 +1,8 @@
-package com.moodvie.controller;
+package com.moodvie.controller.userController;
 
 
 import com.moodvie.business.facade.UserFacade;
+import com.moodvie.controller.NavigationController;
 import com.moodvie.persistance.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 
-public class LoginController extends AbstractController{
+public class LoginController {
 
     public Button loginButton;
     public Button registerButton;
@@ -47,7 +48,21 @@ public class LoginController extends AbstractController{
         }
     }
 
-    public void handleShowRegisterView(ActionEvent actionEvent) {
-        mainController.loadRegisterView();
+    public void handleShowRegisterView() {
+        NavigationController.getInstance().loadRegisterView();
+    }
+
+    public void handleCancelAction() {
+        usernameField.setText("");
+        passwordField.setText("");
+    }
+
+    public void handleShowForgotPasswordView() {
+       //Afficher une alerte
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Mot de passe oublié");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez contacter l'administrateur !");
+        alert.showAndWait();
     }
 }

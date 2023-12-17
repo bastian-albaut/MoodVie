@@ -3,15 +3,23 @@ package com.moodvie.business.facade;
 import com.moodvie.persistance.dao.UserDao;
 import com.moodvie.persistance.factory.AbstractDaoFactory;
 import com.moodvie.persistance.model.User;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * UserFacade est un singleton
  * Permet de gérer les utilisateurs
  */
-public class UserFacade {
+public class UserFacade implements Observable {
+
+    private final List<InvalidationListener> listeners = new ArrayList<>();
     private static UserFacade instance;
-    private AbstractDaoFactory abstractDaoFactory;
+    private final AbstractDaoFactory abstractDaoFactory;
     private User user;
+
 
     private UserFacade() {
         this.abstractDaoFactory = AbstractDaoFactory.getFactory();
@@ -26,7 +34,10 @@ public class UserFacade {
 
     /**
      * Cette méthode permet de créer un utilisateur
-     * @param name nom de l'utilisateur
+        * @param pseudo pseudo de l'utilisateur
+     *               * @param firstname prénom de l'utilisateur
+     *                  * @param lastname nom de l'utilisateur
+     *                  * @param birthday date de naissance de l'utilisateur
      * @param email email de l'utilisateur
      * @param password mot de passe de l'utilisateur
      * @return true si l'utilisateur a été créé, false sinon
@@ -48,6 +59,7 @@ public class UserFacade {
         }
 
         this.user = user;
+        this.notifyListeners(); // Notifie les observateurs après l'inscription
         return true;
     }
 
@@ -79,6 +91,7 @@ public class UserFacade {
         }
 
         this.user = user;
+        this.notifyListeners();
         return user;
     }
 
@@ -88,6 +101,7 @@ public class UserFacade {
      */
     public Boolean logout(){
         this.user = null;
+        this.notifyListeners();
         return true;
     }
 
@@ -119,5 +133,53 @@ public class UserFacade {
         }
 
         return this.user;
+    }
+
+    /**
+     * Cette méthode permet de mettre à jour l'utilisateur courant
+     * @param pseudo pseudo de l'utilisateur
+     * @param firstname prénom de l'utilisateur
+     * @param lastname nom de l'utilisateur
+     * @param birthday date de naissance de l'utilisateur
+     * @param email email de l'utilisateur
+     * @param password mot de passe de l'utilisateur
+     * @return true si l'utilisateur a été mis à jour, false sinon
+     */
+    public User updateUser(String pseudo,String firstname,String lastname,String birthday, String email, String password) {
+        UserDao UserDao = abstractDaoFactory.getUserDao();
+
+        // Vérifie si un utilisateur existe déjà pour cet email
+        if (UserDao.getUser(email) != null) {
+            return null;
+        }
+
+        User user = new User(pseudo, firstname, lastname, birthday, email, password);
+
+        try {
+            UserDao.updateUser(user);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        this.user = user;
+        this.notifyListeners(); // Notifie les observateurs après l'inscription
+        return user;
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        listeners.add(invalidationListener);
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        listeners.remove(invalidationListener);
+    }
+    private void notifyListeners() {
+        for (InvalidationListener listener : listeners) {
+            System.out.println("notifyListeners");
+            listener.invalidated(this);
+        }
     }
 }
