@@ -13,7 +13,6 @@
         <HBox styleClass="hbox">
             <Region HBox.hgrow="ALWAYS"/>
             <Button text="Connexion" onAction="#loadLoginView" styleClass="button"/>
-            <Button text="Inscription" onAction="#loadRegisterView" styleClass="button"/>
         </HBox>
     </top>
     <center>

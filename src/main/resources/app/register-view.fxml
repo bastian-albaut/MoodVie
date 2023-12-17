@@ -17,21 +17,52 @@
             </columnConstraints>
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="5">
                 <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icones/email.png"/>
+                    <Image url="@icones/carte-de-visite.png"/>
                 </ImageView>
-                <TextField fx:id="surnameField" promptText="Nom"/>
+                <TextField fx:id="lastNameField" promptText="Nom"/>
             </HBox>
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER_LEFT" spacing="5">
                 <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@icones/mot-de-passe.png"/>
+                    <Image url="@icones/carte-de-visite.png"/>
                 </ImageView>
-                <PasswordField fx:id="passwordField" promptText="Nom"/>
+                <TextField fx:id="firstNameField" promptText="Prénom"/>
             </HBox>
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER_LEFT" spacing="5">
                 <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/compte.png"/>
+                </ImageView>
+                <TextField fx:id="surnameField" promptText="Pseudo"/>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="3" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/date-danniversaire.png"/>
+                </ImageView>
+                <DatePicker fx:id="birthdatePicker" promptText="Date de naissance"/>
+
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="4" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
                     <Image url="@icones/email.png"/>
                 </ImageView>
-                <TextField fx:id="emailField" promptText="Nom"/>
+                <TextField fx:id="emailField" promptText="Email"/>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="5" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/email.png"/>
+                </ImageView>
+                <TextField fx:id="confirmEmailField" promptText="Confirmer l'email"/>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="6" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/mot-de-passe.png"/>
+                </ImageView>
+                <PasswordField fx:id="passwordField" promptText="Mot de passe"/>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="7" alignment="CENTER_LEFT" spacing="5">
+                <ImageView fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icones/mot-de-passe.png"/>
+                </ImageView>
+                <PasswordField fx:id="confirmPasswordField" promptText="Confirmer le mots de passe"/>
             </HBox>
         </GridPane>
         <CheckBox fx:id="termsCheckBox" text="J'accepte les conditions d'utilisation" />
