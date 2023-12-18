@@ -34,11 +34,15 @@ public class UserFacadeTest {
         when(abstractDaoFactoryMock.getUserDao()).thenReturn(userDaoMock);
 
         // Mock the getUser method
-        String name= "Doe";
+        String pseudo= "Doe";
+        String firstname = "John";
+        String lastname = "Doe";
         String email = "Test";
         String password = "Test";
+        String birthdate = "01/01/2000";
 
-        User expectedUser = new User(name, email, password);
+
+        User expectedUser = new User(pseudo,firstname,lastname,birthdate,email,password);
         when(userDaoMock.getUser(eq(email))).thenReturn(expectedUser);
 
         // Test the login method
@@ -47,8 +51,6 @@ public class UserFacadeTest {
 
         // Assertions
         assertNotNull(userAfterLogin);
-        assertEquals(expectedUser.getName(), userAfterLogin.getName());
-        assertEquals(expectedUser.getEmail(), userAfterLogin.getEmail());
-        assertEquals(expectedUser.getPassword(), userAfterLogin.getPassword());
+        assertEquals(expectedUser, userAfterLogin);
     }
 }

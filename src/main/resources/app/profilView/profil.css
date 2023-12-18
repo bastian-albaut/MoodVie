@@ -1,0 +1,54 @@
+.header {
+    -fx-background-color: #FFFACD; /* A soft yellow color for the header */
+    -fx-padding: 15;
+    -fx-alignment: center-right;
+}
+
+.header-label {
+    -fx-font-size: 24pt; /* Adjust the size as needed */
+    -fx-text-fill: #000000; /* Color for the text */
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); /* Optional shadow effect */
+}
+
+.header-button {
+    -fx-background-color: #ADD8E6; /* A light blue color for the button */
+    -fx-text-fill: #FFFFFF; /* White text */
+}
+
+.menu {
+    -fx-background-color: #F0F0F0; /* A light grey color for the menu */
+}
+
+.menu-button {
+    -fx-background-color: transparent; /* No background */
+    -fx-text-fill: #000000; /* Black text */
+    -fx-underline: true; /* Underline text */
+    -fx-padding: 10;
+}
+
+.profile-image {
+    -fx-padding: 20;
+}
+
+.profile-image-button {
+    -fx-background-radius: 30; /* Circular button */
+    -fx-background-color: #D3D3D3; /* Light grey */
+    -fx-text-fill: #000000; /* Black text */
+}
+
+.input-field {
+    -fx-pref-width: 200;
+    -fx-max-height: 30;
+}
+
+.validate-button {
+    -fx-background-color: #32CD32; /* Green button */
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-padding: 10;
+}
+
+.cancel-button {
+    -fx-background-color: #FF6347; /* Red button */
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-padding: 10;
+}

@@ -1,10 +1,37 @@
-.button {
-    -fx-background-color: white;
-    -fx-border-color: black;
-    -fx-border-width: 2;
+/* Style général pour l'onglet */
+.onglet {
+    -fx-padding: 10px;
+    -fx-spacing: 5px;
+    -fx-alignment: center-right;
 }
 
-.hbox {
-    -fx-background-color: #333;
-    -fx-padding: 10;
+/* Style pour la barre de navigation */
+.navBarContainer {
+    -fx-background-color: #FDF1B8;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center-right;
+}
+
+/* Style pour les boutons dans les onglets */
+.tab-button {
+    -fx-background-color: #FDF1B8;
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-font-weight: bold;
+    -fx-min-width: 100px;
+    -fx-min-height: 30px;
+}
+
+/* Style au survol pour les boutons */
+.tab-button:hover {
+    -fx-background-color: #e0ba60;
+}
+
+/* Style quand le bouton est pressé */
+.tab-button:pressed {
+    -fx-background-color: #e09c60;
 }

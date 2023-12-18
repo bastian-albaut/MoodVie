@@ -2,63 +2,143 @@ package com.moodvie.persistance.model;
 
 public class User {
     private int id;
-    private String name;
-    private String email;
+    private String pseudo;
 
+    private String firstname;
+
+    private String lastname;
+
+    private String birthday;
+    private String email;
     private String password;
     // autres propriétés selon vos besoins
 
-    // Constructeurs
-    public User() {
-    }
+    public User() {}
 
-    public User(String name, String email, String password){
-        this.name = name;
+
+    public User(String pseudo, String firstname, String lastname, String birthday, String email, String password) {
+        this.pseudo = pseudo;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthday = birthday;
         this.email = email;
         this.password = password;
     }
 
-    // Getters et Setters
+     // Getters et setters
+
+    /**
+        * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+        * @param id the id to set
+     */
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setPassword(String password){
-        this.password = password;
+    /**
+        * @return the pseudo
+      */
+    public String getPseudo() {
+        return pseudo;
     }
 
-    public String getPassword(){
-        return this.password;
+    /**
+        * @param pseudo the pseudo to set
+     * */
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
-    public String getName() {
-        return name;
+    /**
+        * @return the firstname
+     * */
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+        * @param firstname the firstname to set
+     * */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
+
+    /**
+        * @return the lastname
+     * */
+    public String getLastname() {
+        return lastname;
+    }
+
+    /**
+        * @param lastname the lastname to set
+     * */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    /**
+        * @return the birthday
+     * */
+    public String getBirthday() {
+        return birthday;
+    }
+
+    /**
+        * @param birthday the birthday to set
+     * */
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    /**
+        * @return the email
+     * */
 
     public String getEmail() {
         return email;
     }
 
+    /**
+        * @param email the email to set
+     * */
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // Méthode toString() pour l'affichage
+    /**
+        * @return the password
+     * */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+        * @param password the password to set
+     * */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
     @Override
     public String toString() {
-        return "model.User{" +
+        return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthday='" + birthday + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + this.password + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
