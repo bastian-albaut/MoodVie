@@ -1,14 +1,14 @@
 package com.moodvie.persistance.model;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class Subscribe {
     private int id;
-    private LocalDateTime startDate;
+    private Timestamp startDate;
     private boolean isActive;
 
     public Subscribe() {}
 
-    public Subscribe(int id, LocalDateTime startDate, boolean isActive) {
+    public Subscribe(int id, Timestamp startDate, boolean isActive) {
         this.id = id;
         this.startDate = startDate;
         this.isActive = isActive;
@@ -33,14 +33,14 @@ public class Subscribe {
     /**
      * @return the startDate
      */
-    public LocalDateTime getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
     /**
-        * @param id the id to set
+        * @param startDate the startDate to set
      */
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
@@ -52,7 +52,7 @@ public class Subscribe {
     }
 
     /**
-        * @param id the id to set
+        * @param isActive the isActive to set
      */
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
