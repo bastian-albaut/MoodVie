@@ -1,0 +1,163 @@
+package com.moodvie.persistance.dao;
+import com.moodvie.persistance.model.Subscribe;
+import com.moodvie.persistance.database.DatabaseConnection;
+
+import java.sql.*;
+
+
+/**
+ * PostGreSubscribeDao est une implémentation de SubscribeDao spécifique à PostGre
+ * Permet de gérer les abonnements
+ */
+public class PostGreSubscribeDao extends SubscribeDao {
+    private final Connection connection = DatabaseConnection.getInstance().getConnection();
+
+    public PostGreSubscribeDao() {
+        dropTable();
+        createTable();
+    }
+
+    /**
+     * Cette méthode supprime la table subscribes de la base de données
+     */
+    private void dropTable() {
+        String sql = "DROP TABLE IF EXISTS subscribes";
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la suppression de la table : " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Cette méthode crée la table subscribes dans la base de données si elle n'existe pas
+     */
+    void createTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS subscribes (" +
+                "id SERIAL PRIMARY KEY, " +
+                "startDate TIMESTAMP, " +
+                "isActive BOOLEAN, " +
+                ")";
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la création de la table : " + e.getMessage(), e);
+        }
+    }
+
+
+    /**
+     * Cette méthode ajoute un abonnement dans la base de données
+     * @param subscribe l'abonnement à ajouter
+
+Conversions between timestamp without time zone and timestamp with time zone normally assume that the timestamp without time zone value should be taken or given as timezone local time. A different time zone can be specified for the conversion using AT TIME ZONE.
+     */
+    @Override
+    public void addSubscribe(Subscribe subscribe) throws RuntimeException{
+        try (PreparedStatement ps =  connection.prepareStatement("INSERT INTO subscribes (id, startDate, isActive) VALUES (?, ?, ?)")) {
+            setSubscribe(subscribe, ps);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Cette méthode permet de définir les paramètres d'un abonnement dans une requête SQL
+     * @param subscribe l'abonnement à ajouter
+     * @param ps la requête SQL à modifier
+     */
+    private void setSubscribe(Subscribe subscribe, PreparedStatement ps) throws SQLException {
+        ps.setInt(1, subscribe.getId());
+        ps.setTimestamp(2, subscribe.getStartDate());
+        ps.setBoolean(3, subscribe.getIsActive());
+    }
+
+    /**
+     * Cette méthode récupère un abonnement dans la base de données
+     * @param email l'email de l'abonnement à récupérer
+     * @return l'abonnement récupéré
+     */
+    public Subscribe getSubscribe(String email) throws RuntimeException{
+        // code pour récupérer un abonnement dans une base de données SQL
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM subscribes WHERE email = ?");
+            ps.setString(1, email);
+            Subscribe subscribe = getSubscribe(ps);
+            if (subscribe != null) return subscribe;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    /**
+     * Cette méthode récupère un abonnement dans la base de données
+     * @param ps la requête SQL à exécuter
+     * @return l'abonnement récupéré
+     */
+    private Subscribe getSubscribe(PreparedStatement ps) throws SQLException {
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            Subscribe subscribe = new Subscribe();
+            subscribe.setId(rs.getInt("id"));
+            subscribe.setStartDate(rs.getTimestamp("startDate"));
+            subscribe.setIsActive(rs.getBoolean("isActive"));
+
+            return subscribe;
+        }
+        return null;
+    }
+
+    /**
+     * Cette méthode met à jour un abonnement dans la base de données
+     * @param subscribe l'abonnement à mettre à jour
+     */
+    @Override
+    public void updateSubscribe(Subscribe subscribe) throws RuntimeException{
+        // code pour mettre à jour un abonnement dans une base de données SQL
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE subscribes SET id = ?, startDate = ?, isActive = ? WHERE id = ?");
+            setSubscribe(subscribe, ps);
+            ps.setInt(7, subscribe.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Cette méthode récupère un abonnement dans la base de données
+     * @param subscribeId l'identifiant de l'abonnement à récupérer
+     * @return l'abonnement récupéré
+     */
+    public Subscribe getSubscribe(int subscribeId) throws RuntimeException{
+        // code pour récupérer un abonnement dans une base de données SQL
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM subscribes WHERE id = ?");
+            ps.setInt(1, subscribeId);
+            Subscribe subscribe = getSubscribe(ps);
+            if (subscribe != null) return subscribe;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    /**
+     * Cette méthode supprime un abonnement de la base de données
+     * @param subscribeId l'identifiant de l'abonnement à supprimer
+     */
+    public void deleteSubscribe(int subscribeId) throws RuntimeException{
+        // code pour supprimer un abonnement dans une base de données SQL
+        try {
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM subscribes WHERE id = ?");
+            ps.setInt(1, subscribeId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+}
