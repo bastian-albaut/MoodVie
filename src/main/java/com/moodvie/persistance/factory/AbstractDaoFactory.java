@@ -1,5 +1,6 @@
 package com.moodvie.persistance.factory;
 
+import com.moodvie.persistance.dao.TypeOfSubscribeDao;
 import com.moodvie.persistance.dao.SubscribeDao;
 import com.moodvie.persistance.dao.UserDao;
 
@@ -34,4 +35,10 @@ public abstract class AbstractDaoFactory {
      * @return une instance de SubscribeDao
      */
     abstract public SubscribeDao getSubscribeDao();
+
+    /**
+     * Permet de récupérer une instance de TypeOfSubscribeDao
+     * @return une instance de TypeOfSubscribeDao
+     */
+    abstract public TypeOfSubscribeDao getTypeOfSubscribeDao();
 }
