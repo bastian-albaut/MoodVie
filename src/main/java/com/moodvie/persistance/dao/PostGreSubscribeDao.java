@@ -37,6 +37,8 @@ public class PostGreSubscribeDao extends SubscribeDao {
                 "id SERIAL PRIMARY KEY, " +
                 "startDate TIMESTAMP, " +
                 "isActive BOOLEAN, " +
+                "FOREIGN KEY (id) REFERENCES typeOfSubscribes(id)" +
+                "FOREIGN KEY (id) REFERENCES users(id)" +
                 ")";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
@@ -49,12 +51,10 @@ public class PostGreSubscribeDao extends SubscribeDao {
     /**
      * Cette méthode ajoute un abonnement dans la base de données
      * @param subscribe l'abonnement à ajouter
-
-Conversions between timestamp without time zone and timestamp with time zone normally assume that the timestamp without time zone value should be taken or given as timezone local time. A different time zone can be specified for the conversion using AT TIME ZONE.
      */
     @Override
     public void addSubscribe(Subscribe subscribe) throws RuntimeException{
-        try (PreparedStatement ps =  connection.prepareStatement("INSERT INTO subscribes (id, startDate, isActive) VALUES (?, ?, ?)")) {
+        try (PreparedStatement ps =  connection.prepareStatement("INSERT INTO subscribes (id, startDate, isActive, typeOfSubscribeId, userId) VALUES (?, ?, ?, ?, ?)")) {
             setSubscribe(subscribe, ps);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -71,17 +71,18 @@ Conversions between timestamp without time zone and timestamp with time zone nor
         ps.setInt(1, subscribe.getId());
         ps.setTimestamp(2, subscribe.getStartDate());
         ps.setBoolean(3, subscribe.getIsActive());
+        ps.setInt(4, subscribe.getTypeOfSubscribeId());
+        ps.setInt(5, subscribe.getUserId());
     }
 
     /**
      * Cette méthode récupère un abonnement dans la base de données
-     * @param email l'email de l'abonnement à récupérer
+     * @param email l'email de l'utilisateur ayant l'abonnement
      * @return l'abonnement récupéré
      */
     public Subscribe getSubscribe(String email) throws RuntimeException{
-        // code pour récupérer un abonnement dans une base de données SQL
         try {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM subscribes WHERE email = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM subscribes NATURAL JOIN users WHERE email = ?");
             ps.setString(1, email);
             Subscribe subscribe = getSubscribe(ps);
             if (subscribe != null) return subscribe;
@@ -103,6 +104,8 @@ Conversions between timestamp without time zone and timestamp with time zone nor
             subscribe.setId(rs.getInt("id"));
             subscribe.setStartDate(rs.getTimestamp("startDate"));
             subscribe.setIsActive(rs.getBoolean("isActive"));
+            subscribe.setTypeOfSubscribeId(rs.getInt("typeOfSubscribeId"));
+            subscribe.setUserId(rs.getInt("userId"));
 
             return subscribe;
         }
@@ -115,9 +118,8 @@ Conversions between timestamp without time zone and timestamp with time zone nor
      */
     @Override
     public void updateSubscribe(Subscribe subscribe) throws RuntimeException{
-        // code pour mettre à jour un abonnement dans une base de données SQL
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE subscribes SET id = ?, startDate = ?, isActive = ? WHERE id = ?");
+            PreparedStatement ps = connection.prepareStatement("UPDATE subscribes SET id = ?, startDate = ?, isActive = ?, typeOfSubscribeId = ?, userId = ? WHERE id = ?");
             setSubscribe(subscribe, ps);
             ps.setInt(7, subscribe.getId());
             ps.executeUpdate();
@@ -132,7 +134,6 @@ Conversions between timestamp without time zone and timestamp with time zone nor
      * @return l'abonnement récupéré
      */
     public Subscribe getSubscribe(int subscribeId) throws RuntimeException{
-        // code pour récupérer un abonnement dans une base de données SQL
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM subscribes WHERE id = ?");
             ps.setInt(1, subscribeId);
@@ -149,7 +150,6 @@ Conversions between timestamp without time zone and timestamp with time zone nor
      * @param subscribeId l'identifiant de l'abonnement à supprimer
      */
     public void deleteSubscribe(int subscribeId) throws RuntimeException{
-        // code pour supprimer un abonnement dans une base de données SQL
         try {
             PreparedStatement ps = connection.prepareStatement("DELETE FROM subscribes WHERE id = ?");
             ps.setInt(1, subscribeId);
