@@ -37,6 +37,10 @@ public class TabController {
             NavigationController.getInstance().loadRegisterView();
         }else if (actionCommand.get().equals("logout")) {
             NavigationController.getInstance().handleDisconnect();
+        } else if (actionCommand.get().equals("loadSubscribeView")) {
+            NavigationController.getInstance().loadSubscribeView();
+        } else {
+            System.out.println("Unknown action command: " + actionCommand.get());
         }
     }
 

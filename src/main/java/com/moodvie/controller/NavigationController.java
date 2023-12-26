@@ -49,12 +49,20 @@ public class NavigationController {
     public void loadRegisterView() {
         loadView("/app/register-view.fxml");
     }
+
     /**
      * handle the disconnect
      */
     public void handleDisconnect() {
         userFacade.logout();
         loadLoginView();
+    }
+
+    /**
+     * Load the subscribe view
+     */
+    public void loadSubscribeView() {
+        loadView("/app/subscribeView/subscribe-view.fxml");
     }
 
     /**

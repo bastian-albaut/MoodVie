@@ -30,6 +30,7 @@ public class NavBarController implements InvalidationListener {
 
         if (isUserLoggedIn) {
             addTab("Profil", "loadProfilView");
+            addTab("Abonnement", "loadSubscribeView");
             addTab("Déconnexion", "logout");
         } else {
             addTab("Connexion", "loadLoginView");
