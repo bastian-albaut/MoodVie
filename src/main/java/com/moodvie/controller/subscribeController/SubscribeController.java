@@ -12,13 +12,13 @@ public class SubscribeController {
     private HBox hBox;
 
     @FXML
-    private VBox box1;
+    private VBox boxBaseSubscribe;
 
     @FXML
-    private VBox box2;
+    private VBox boxMonthlySubscribe;
 
     @FXML
-    private VBox box3;
+    private VBox boxAnnualSubscribe;
 
     @FXML
     private Label text1;
@@ -36,15 +36,57 @@ public class SubscribeController {
     private Button button2;
 
     @FXML
+    private VBox boxTitleBaseSubscribe;
+
+    @FXML
+    private VBox boxTitleMonthlySubscribe;
+
+    @FXML
+    private VBox boxTitleAnnualSubscribe;
+
+    @FXML
+    private VBox boxFeaturesBaseSubscribe;
+
+    @FXML
+    private VBox boxFeaturesMonthlySubscribe;
+
+    @FXML
+    private VBox boxFeaturesAnnualSubscribe;
+
+    @FXML
+    private VBox boxActionBaseSubscribe;
+
+    @FXML
+    private VBox boxActionMonthlySubscribe;
+
+    @FXML
+    private VBox boxActionAnnualSubscribe;
+
+    @FXML
     public void initialize() {
-        box1.prefWidthProperty().bind(hBox.widthProperty().multiply(0.2));
-        box1.prefHeightProperty().bind(hBox.heightProperty().multiply(0.5));
+        hBox.setFillHeight(false);
 
-        box2.prefWidthProperty().bind(hBox.widthProperty().multiply(0.2));
-        box2.prefHeightProperty().bind(hBox.heightProperty().multiply(0.5));
+        // Adjust the size of the base subscribe box and its children
+        boxBaseSubscribe.prefWidthProperty().bind(hBox.widthProperty().multiply(0.25));
+        boxBaseSubscribe.prefHeightProperty().bind(hBox.heightProperty().multiply(0.9));
+        boxTitleBaseSubscribe.prefHeightProperty().bind(boxBaseSubscribe.heightProperty().multiply(0.25));
+        boxFeaturesBaseSubscribe.prefHeightProperty().bind(boxBaseSubscribe.heightProperty().multiply(0.5));
+        boxActionBaseSubscribe.prefHeightProperty().bind(boxBaseSubscribe.heightProperty().multiply(0.25));
 
-        box3.prefWidthProperty().bind(hBox.widthProperty().multiply(0.2));
-        box3.prefHeightProperty().bind(hBox.heightProperty().multiply(0.5));
+        // Adjust the size of the monthly subscribe box and its children
+        boxMonthlySubscribe.prefWidthProperty().bind(hBox.widthProperty().multiply(0.25));
+        boxMonthlySubscribe.prefHeightProperty().bind(hBox.heightProperty().multiply(0.9));
+        boxTitleMonthlySubscribe.prefHeightProperty().bind(boxMonthlySubscribe.heightProperty().multiply(0.25));
+        boxFeaturesMonthlySubscribe.prefHeightProperty().bind(boxMonthlySubscribe.heightProperty().multiply(0.5));
+        boxActionMonthlySubscribe.prefHeightProperty().bind(boxMonthlySubscribe.heightProperty().multiply(0.25));
+
+        // Adjust the size of the annual subscribe box and its children
+        boxAnnualSubscribe.prefWidthProperty().bind(hBox.widthProperty().multiply(0.25));
+        boxAnnualSubscribe.prefHeightProperty().bind(hBox.heightProperty().multiply(0.9));
+        boxTitleAnnualSubscribe.prefHeightProperty().bind(boxAnnualSubscribe.heightProperty().multiply(0.25));
+        boxFeaturesAnnualSubscribe.prefHeightProperty().bind(boxAnnualSubscribe.heightProperty().multiply(0.5));
+        boxActionAnnualSubscribe.prefHeightProperty().bind(boxAnnualSubscribe.heightProperty().multiply(0.25));
+
 
         button1.setOnAction(event -> handleButton1());
         button2.setOnAction(event -> handleButton2());

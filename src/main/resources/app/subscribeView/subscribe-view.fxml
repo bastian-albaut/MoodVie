@@ -8,45 +8,57 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.subscribeController.SubscribeController">
     <HBox alignment="CENTER" spacing="20" fx:id="hBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <VBox styleClass="box" fx:id="box1">
-            <VBox>
-                <Label text="Version standard"/>
-                <Label text="Gratuit"/>
+        <VBox styleClass="box" fx:id="boxBaseSubscribe">
+            <VBox alignment="CENTER" styleClass="boxTitle" fx:id="boxTitleBaseSubscribe">
+                <Label styleClass="labelTitle" text="Version standard"/>
+                <Label styleClass="labelPrice" text="Gratuit"/>
             </VBox>
-            <VBox>
-                <Label text="- Possibilité 1"/>
-                <Label text="- Possibilité 2"/>
-                <Label text="- Possibilité 3"/>
+            <VBox alignment="CENTER" styleClass="boxFeatures" fx:id="boxFeaturesBaseSubscribe">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox>
+                        <Label text="- Possibilité 1"/>
+                        <Label text="- Possibilité 2"/>
+                        <Label text="- Possibilité 3"/>
+                    </VBox>
+                </HBox>
             </VBox>
-            <VBox>
+            <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionBaseSubscribe">
                 <Label text="Déjà possédé"/>
             </VBox>
         </VBox>
-        <VBox styleClass="box" fx:id="box2">
-            <VBox>
-                <Label text="Abonnement mensuel"/>
-                <Label text="4€99/mois"/>
+        <VBox styleClass="box" fx:id="boxMonthlySubscribe">
+            <VBox alignment="CENTER" styleClass="boxTitle" fx:id="boxTitleMonthlySubscribe">
+                <Label styleClass="labelTitle" text="Abonnement mensuel"/>
+                <Label styleClass="labelPrice" text="4€99/mois"/>
             </VBox>
-            <VBox>
-                <Label text="- Possibilité 1"/>
-                <Label text="- Possibilité 2"/>
-                <Label text="- Possibilité 3"/>
+            <VBox alignment="CENTER" styleClass="boxFeatures" fx:id="boxFeaturesMonthlySubscribe">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox>
+                        <Label text="- Possibilité 1"/>
+                        <Label text="- Possibilité 2"/>
+                        <Label text="- Possibilité 3"/>
+                    </VBox>
+                </HBox>
             </VBox>
-            <VBox>
+            <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionMonthlySubscribe">
                 <Button text="Acheter maintenant" fx:id="button1"/>
             </VBox>
         </VBox>
-        <VBox styleClass="box" fx:id="box3">
-            <VBox>
-                <Label text="Abonnement annuel"/>
-                <Label text="29€99/an"/>
+        <VBox styleClass="box" fx:id="boxAnnualSubscribe">
+            <VBox alignment="CENTER" styleClass="boxTitle" fx:id="boxTitleAnnualSubscribe">
+                <Label styleClass="labelTitle" text="Abonnement annuel"/>
+                <Label styleClass="labelPrice" text="29€99/an"/>
             </VBox>
-            <VBox>
-                <Label text="- Possibilité 1"/>
-                <Label text="- Possibilité 2"/>
-                <Label text="- Possibilité 3"/>
+            <VBox alignment="CENTER" styleClass="boxFeatures" fx:id="boxFeaturesAnnualSubscribe">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox>
+                        <Label text="- Possibilité 1"/>
+                        <Label text="- Possibilité 2"/>
+                        <Label text="- Possibilité 3"/>
+                    </VBox>
+                </HBox>
             </VBox>
-            <VBox>
+            <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionAnnualSubscribe">
                 <Button text="Acheter maintenant" fx:id="button2"/>
             </VBox>
         </VBox>

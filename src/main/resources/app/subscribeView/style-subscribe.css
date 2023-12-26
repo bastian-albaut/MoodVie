@@ -1,6 +1,35 @@
 /* style-subscribe.css */
 
 .box {
-    -fx-background-color: red;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+}
+
+.boxTitle {
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-color: #de9800;
+    -fx-padding: 5px;
+}
+
+.labelTitle {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.labelPrice {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.boxFeatures, .boxAction {
+    -fx-background-color: #302e2b;
+    -fx-padding: 10px;
+}
+
+.boxFeatures Label, .boxAction Label {
     -fx-text-fill: white;
 }
