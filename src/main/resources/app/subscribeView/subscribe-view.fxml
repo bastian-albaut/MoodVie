@@ -2,7 +2,16 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.CycleMethod?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.subscribeController.SubscribeController">
-    <Label text="Bienvenue sur la plage d'inscription!" />
+    <HBox alignment="CENTER" spacing="20">
+        <Label styleClass="box" text="Box 1" />
+        <Label styleClass="box" text="Box 2" />
+        <Label styleClass="box" text="Box 3" />
+    </HBox>
 </AnchorPane>
