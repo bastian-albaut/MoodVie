@@ -15,7 +15,7 @@ public class TypeSubscribeFacade {
     private ArrayList<TypeOfSubscribe> typeOfSubscribeList;
 
     private TypeSubscribeFacade() {
-        // This will drop and recreate the table every time a new instance is created
+        // This will drop and recreate the table every time a new instance of the facade is created
         this.typeOfSubscribeDao = AbstractDaoFactory.getFactory().getTypeOfSubscribeDao();
         typeOfSubscribeList = new ArrayList<>();
     }
