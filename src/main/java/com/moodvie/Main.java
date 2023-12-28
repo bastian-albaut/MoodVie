@@ -1,52 +1,35 @@
 package com.moodvie;
 
-import com.moodvie.business.facade.SubscribeFacade;
-import com.moodvie.business.facade.TypeSubscribeFacade;
-import com.moodvie.business.facade.UserFacade;
-import com.moodvie.persistance.model.Subscribe;
-import com.moodvie.persistance.model.User;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+import java.io.IOException;
+
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/main-view.fxml"));
+            Parent view = loader.load();
+
+            Scene scene = new Scene(view);
+            String css = getClass().getResource("/app/style.css").toExternalForm();
+            scene.getStylesheets().add(css);
+
+            stage.setScene(scene);
+            stage.setMinHeight(600);
+            stage.setMinWidth(800);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+
     public static void main(String[] args) {
-
-        // Must create type of subscribe on the init of the app
-        TypeSubscribeFacade typeSubscribeFacade = TypeSubscribeFacade.getInstance();
-        typeSubscribeFacade.createTypeOfSubscribe("Basique", 0, Integer.MAX_VALUE);
-        typeSubscribeFacade.createTypeOfSubscribe("Mensuel", 4.99, 30);
-        typeSubscribeFacade.createTypeOfSubscribe("Annuel", 29.99, 365);
-
-        // Check if all types of subscribe have been created
-        System.out.println("Type of subscribe list :");
-        typeSubscribeFacade.getListTypeOfSubscribe();
-
-        // Create a user
-        UserFacade userFacade = UserFacade.getInstance();
-        Boolean resRegister = userFacade.register("Test", "Test", "Test", "Test", "Test", "Test");
-
-        // Login the user
-        User user = userFacade.login("Test", "Test");
-        System.out.println("user login : " + user);
-        
-        // Get the subcribe of the user
-        SubscribeFacade subscribeFacade = SubscribeFacade.getInstance();
-        Subscribe subscribe = subscribeFacade.getSubscribe();
-        System.out.println("subscribe : " + subscribe);
-
-        // Change the type of subscribe of the user
-        Boolean resChangeSubscribe = subscribeFacade.changeSubscribe(2);
-        System.out.println("resChangeSubscribe : " + resChangeSubscribe);
-        System.out.println("subscribe : " + subscribe);
-
-        // Stop the subscribe of the user
-        Boolean resStopSubscribe = subscribeFacade.stopSubscribe();
-        System.out.println("resStopSubscribe : " + resStopSubscribe);
-        System.out.println("subscribe : " + subscribe);
-
-        // User user2 = userFacade.login("a", "a");
-        // System.out.println("user2 login : " + user2);
-
-        //userFacade.DeleteUser();
-
-
+        launch();
     }
 }
