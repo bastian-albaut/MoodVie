@@ -8,8 +8,7 @@ public class TypeOfSubscribe {
 
     public TypeOfSubscribe() {}
 
-    public TypeOfSubscribe(int id, String label, double price, int numberOfDays) {
-        this.id = id;
+    public TypeOfSubscribe(String label, double price, int numberOfDays) {
         this.label = label;
         this.price = price;
         this.numberOfDays = numberOfDays;

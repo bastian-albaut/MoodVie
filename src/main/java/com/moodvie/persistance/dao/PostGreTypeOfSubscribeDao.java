@@ -18,17 +18,16 @@ public class PostGreTypeOfSubscribeDao extends TypeOfSubscribeDao {
     }
 
     /**
-     * Cette méthode supprime la table typeOfSubscribes de la base de données
+     * Cette méthode supprime la table typeOfSubscribes de la base de données et toutes les tables qui en dépendent
      */
     private void dropTable() {
-        String sql = "DROP TABLE IF EXISTS typeOfSubscribes";
+        String sql = "DROP TABLE IF EXISTS typeOfSubscribes CASCADE";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la suppression de la table : " + e.getMessage(), e);
         }
     }
-
     /**
      * Cette méthode crée la table typeOfSubscribes dans la base de données si elle n'existe pas
      */

@@ -1,35 +1,32 @@
 package com.moodvie;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import com.moodvie.business.facade.TypeSubscribeFacade;
+import com.moodvie.business.facade.UserFacade;
+import com.moodvie.persistance.model.User;
 
-import java.io.IOException;
-
-public class Main extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/main-view.fxml"));
-            Parent view = loader.load();
-
-            Scene scene = new Scene(view);
-            String css = getClass().getResource("/app/style.css").toExternalForm();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.setMinHeight(600);
-            stage.setMinWidth(800);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-    }
-
+public class Main {
     public static void main(String[] args) {
-        launch();
+
+        // Must create type of subscribe on the init of the app
+        TypeSubscribeFacade typeSubscribeFacade = TypeSubscribeFacade.getInstance();
+        typeSubscribeFacade.createTypeOfSubscribe("Basique", 0, Integer.MAX_VALUE);
+        typeSubscribeFacade.createTypeOfSubscribe("Mensuel", 4.99, 30);
+        typeSubscribeFacade.createTypeOfSubscribe("Annuel", 29.99, 365);
+
+        // Check if all types of subscribe have been created
+        System.out.println("Type of subscribe list :");
+        typeSubscribeFacade.getListTypeOfSubscribe();
+
+
+        UserFacade userFacade = UserFacade.getInstance();
+        Boolean resRegister = userFacade.register("Test", "Test", "Test", "Test", "Test", "Test");
+        User user = userFacade.login("Test", "Test");
+        System.out.println("user login : " + user);
+        User user2 = userFacade.login("a", "a");
+        System.out.println("user2 login : " + user2);
+
+        //userFacade.DeleteUser();
+
+
     }
 }
