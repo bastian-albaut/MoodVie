@@ -35,9 +35,9 @@ public class PostGreTypeOfSubscribeDao extends TypeOfSubscribeDao {
     void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS typeOfSubscribes (" +
                 "id SERIAL PRIMARY KEY, " +
-                "label String, " +
-                "price double, " +
-                "numberOfDay int, " +
+                "label VARCHAR(100), " +
+                "price DECIMAL(10,2), " +
+                "numberOfDay INTEGER " +
                 ")";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
