@@ -35,13 +35,11 @@ public class Main {
         // Change the type of subscribe of the user
         Boolean resChangeSubscribe = subscribeFacade.changeSubscribe(2);
         System.out.println("resChangeSubscribe : " + resChangeSubscribe);
-        subscribeFacade.getSubscribe();
         System.out.println("subscribe : " + subscribe);
 
         // Stop the subscribe of the user
         Boolean resStopSubscribe = subscribeFacade.stopSubscribe();
         System.out.println("resStopSubscribe : " + resStopSubscribe);
-        subscribeFacade.getSubscribe();
         System.out.println("subscribe : " + subscribe);
 
         // User user2 = userFacade.login("a", "a");
