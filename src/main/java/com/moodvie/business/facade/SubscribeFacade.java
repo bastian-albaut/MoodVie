@@ -60,18 +60,10 @@ public class SubscribeFacade {
      * Cette méthode permet de changer le type d'abonnement d'un utilisateur
      *
      * @param typeOfSubscribeId id du type d'abonnement
-     * @param userId id de l'utilisateur
      * 
      * @return true si le type d'abonnement a été changé, false sinon
      */
-    public Boolean changeSubscribe(int typeOfSubscribeId, int userId) {
-        // Check if there is the user has already a subscribe
-        if (subscribeDao.getSubscribe(userId) == null) {
-            System.out.println("User has no subscribe");
-            return false;
-        }
-
-        Subscribe subscribe = subscribeDao.getSubscribe(userId);
+    public Boolean changeSubscribe(int typeOfSubscribeId) {
         subscribe.setTypeOfSubscribeId(typeOfSubscribeId);
 
         try{
@@ -81,7 +73,6 @@ public class SubscribeFacade {
             return false;
         }
 
-        this.subscribe = subscribe;
         return true;
     }
 

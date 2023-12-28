@@ -123,7 +123,7 @@ public class PostGreSubscribeDao extends SubscribeDao {
         try {
             PreparedStatement ps = connection.prepareStatement("UPDATE subscribes SET id = ?, startDate = ?, isActive = ?, typeOfSubscribeId = ?, userId = ? WHERE id = ?");
             setSubscribe(subscribe, ps);
-            ps.setInt(7, subscribe.getId());
+            ps.setInt(6, subscribe.getId()); // Corrected the column index to 6
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
