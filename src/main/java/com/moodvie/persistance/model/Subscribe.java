@@ -10,8 +10,7 @@ public class Subscribe {
 
     public Subscribe() {}
 
-    public Subscribe(int id, Timestamp startDate, boolean isActive, int typeOfSubscribeId, int userId) {
-        this.id = id;
+    public Subscribe(Timestamp startDate, boolean isActive, int typeOfSubscribeId, int userId) {
         this.startDate = startDate;
         this.isActive = isActive;
         this.typeOfSubscribeId = typeOfSubscribeId;

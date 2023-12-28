@@ -1,7 +1,9 @@
 package com.moodvie;
 
+import com.moodvie.business.facade.SubscribeFacade;
 import com.moodvie.business.facade.TypeSubscribeFacade;
 import com.moodvie.business.facade.UserFacade;
+import com.moodvie.persistance.model.Subscribe;
 import com.moodvie.persistance.model.User;
 
 public class Main {
@@ -17,13 +19,21 @@ public class Main {
         System.out.println("Type of subscribe list :");
         typeSubscribeFacade.getListTypeOfSubscribe();
 
-
+        // Create a user
         UserFacade userFacade = UserFacade.getInstance();
         Boolean resRegister = userFacade.register("Test", "Test", "Test", "Test", "Test", "Test");
+
+        // Login the user
         User user = userFacade.login("Test", "Test");
         System.out.println("user login : " + user);
-        User user2 = userFacade.login("a", "a");
-        System.out.println("user2 login : " + user2);
+        
+        // Get the subcribe of the user
+        SubscribeFacade subscribeFacade = SubscribeFacade.getInstance();
+        Subscribe subscribe = subscribeFacade.getSubscribe();
+        System.out.println("subscribe : " + subscribe);
+
+        // User user2 = userFacade.login("a", "a");
+        // System.out.println("user2 login : " + user2);
 
         //userFacade.DeleteUser();
 

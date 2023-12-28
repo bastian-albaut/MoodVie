@@ -6,6 +6,7 @@ import com.moodvie.persistance.model.User;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +35,14 @@ public class UserFacade implements Observable {
 
     /**
      * Cette méthode permet de créer un utilisateur
-        * @param pseudo pseudo de l'utilisateur
-     *               * @param firstname prénom de l'utilisateur
-     *                  * @param lastname nom de l'utilisateur
-     *                  * @param birthday date de naissance de l'utilisateur
+     * 
+     * @param pseudo pseudo de l'utilisateur
+     * @param firstname prénom de l'utilisateur
+     * @param lastname nom de l'utilisateur
+     * @param birthday date de naissance de l'utilisateur
      * @param email email de l'utilisateur
      * @param password mot de passe de l'utilisateur
+     * 
      * @return true si l'utilisateur a été créé, false sinon
      */
     public Boolean register(String pseudo,String firstname,String lastname,String birthday, String email, String password) {
@@ -51,15 +54,54 @@ public class UserFacade implements Observable {
         }
 
         User user = new User(pseudo,firstname,lastname,birthday,email,password);
-
+        
         try{
             UserDao.addUser(user);
         } catch(Exception e){
             System.out.println(e);
         }
 
-        this.user = user;
+        // Get the user created
+        User userCreated = UserDao.getUser(email);
+        System.out.println("userCreated: " + userCreated);
+        
+        // Create a subscription for the user created
+        boolean subscriptionCreated = createSubscriptionForUser(userCreated.getId());
+
+        // Delete the user created if the subscription creation failed
+        if (!subscriptionCreated) {
+            System.out.println("Failed to create subscription for userId: " + userCreated.getId());
+            UserDao.deleteUser(userCreated.getId());
+            return false;
+        }
+        
+        System.out.println("Subscription created for userId: " + userCreated.getId());
+
+        this.user = userCreated;
         this.notifyListeners(); // Notifie les observateurs après l'inscription
+        return true;
+    }
+
+    /**
+     * Crée automatiquement un abonnement pour un utilisateur donné.
+     *
+     * @param userId id de l'utilisateur pour lequel créer l'abonnement
+     * 
+     * @return true si l'abonnement a été créé, false sinon
+     */
+    private boolean createSubscriptionForUser(int userId) {
+        SubscribeFacade subscribeFacade = SubscribeFacade.getInstance();
+        Timestamp startDate = new Timestamp(System.currentTimeMillis());
+        boolean isActive = true;
+        int typeOfSubscribeId = 1; // The ID of the basic subscription
+
+        boolean subscriptionCreated = subscribeFacade.createSubscribe(startDate, isActive, typeOfSubscribeId, userId);
+
+        if (!subscriptionCreated) {
+            System.out.println("Failed to create subscription for userId: " + userId);
+            return false;
+        }
+
         return true;
     }
 

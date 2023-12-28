@@ -18,10 +18,10 @@ public class PostGreSubscribeDao extends SubscribeDao {
     }
 
     /**
-     * Cette méthode supprime la table subscribes de la base de données
+     * Cette méthode supprime la table subscribes de la base de données et toutes les tables qui en dépendent
      */
     private void dropTable() {
-        String sql = "DROP TABLE IF EXISTS subscribes";
+        String sql = "DROP TABLE IF EXISTS subscribes CASCADE";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {

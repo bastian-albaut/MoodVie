@@ -17,10 +17,10 @@ public class PostGreUserDao extends UserDao{
     }
 
     /**
-     * Cette méthode supprime la table users de la base de données
+     * Cette méthode supprime la table users de la base de données et toutes les tables qui en dépendent
      */
     private void dropTable() {
-        String sql = "DROP TABLE IF EXISTS users";
+        String sql = "DROP TABLE IF EXISTS users CASCADE";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
