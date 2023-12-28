@@ -79,29 +79,11 @@ public class SubscribeFacade {
     /**
      * Cette méthode permet d'arrêter un abonnement payant. Cela va rebasculer l'utilisateur sur un abonnement gratuit
      * 
-     * @param userId id de l'utilisateur
-     * 
      * @return true si l'abonnement a été arrêté, false sinon
      */
-    public Boolean stopSubscribe(int userId) {
-        // Check if there is the user has already a subscribe
-        if (subscribeDao.getSubscribe(userId) == null) {
-            System.out.println("User has no subscribe");
-            return false;
-        }
-
-        Subscribe subscribe = subscribeDao.getSubscribe(userId);
-        subscribe.setTypeOfSubscribeId(1);
-
-        try{
-            subscribeDao.updateSubscribe(subscribe);
-        } catch(Exception e){
-            System.out.println(e);
-            return false;
-        }
-
-        this.subscribe = subscribe;
-        return true;
+    public Boolean stopSubscribe() {
+        boolean isSubscribeChange = this.changeSubscribe(1);
+        return isSubscribeChange;
     }
 
     /**

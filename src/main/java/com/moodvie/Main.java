@@ -38,6 +38,11 @@ public class Main {
         subscribeFacade.getSubscribe();
         System.out.println("subscribe : " + subscribe);
 
+        // Stop the subscribe of the user
+        Boolean resStopSubscribe = subscribeFacade.stopSubscribe();
+        System.out.println("resStopSubscribe : " + resStopSubscribe);
+        subscribeFacade.getSubscribe();
+        System.out.println("subscribe : " + subscribe);
 
         // User user2 = userFacade.login("a", "a");
         // System.out.println("user2 login : " + user2);
