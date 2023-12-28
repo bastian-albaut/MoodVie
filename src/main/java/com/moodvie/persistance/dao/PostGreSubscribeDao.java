@@ -37,8 +37,10 @@ public class PostGreSubscribeDao extends SubscribeDao {
                 "id SERIAL PRIMARY KEY, " +
                 "startDate TIMESTAMP, " +
                 "isActive BOOLEAN, " +
-                "FOREIGN KEY (id) REFERENCES typeOfSubscribes(id)" +
-                "FOREIGN KEY (id) REFERENCES users(id)" +
+                "typeOfSubscribeId INTEGER, " +
+                "userId INTEGER, " +
+                "FOREIGN KEY (typeOfSubscribeId) REFERENCES typeOfSubscribes(id)," +
+                "FOREIGN KEY (userId) REFERENCES users(id)" +
                 ")";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
