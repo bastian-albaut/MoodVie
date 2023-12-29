@@ -35,10 +35,11 @@ public class TypeSubscribeFacade {
      * @param label label du type d'abonnement
      * @param price prix du type d'abonnement
      * @param numberOfDays nombre de jours du type d'abonnement
+     * @param features liste des fonctionnalités du type d'abonnement
      *
      * @return true si le type d'abonnement a été créé, false sinon
      */
-    public Boolean createTypeOfSubscribe(String label, double price, int numberOfDays) {
+    public Boolean createTypeOfSubscribe(String label, double price, int numberOfDays, ArrayList<String> features) {
 
         // Check if there is already a type of subscribe with this label
         for (TypeOfSubscribe typeOfSubscribe : typeOfSubscribeList) {
@@ -49,6 +50,10 @@ public class TypeSubscribeFacade {
         }
 
         TypeOfSubscribe typeOfSubscribe = new TypeOfSubscribe(label, price, numberOfDays);
+        // Convert the features list to an array and set it to the type of subscribe
+        String[] featuresArray = new String[features.size()];
+        featuresArray = features.toArray(featuresArray);
+        typeOfSubscribe.setFeatures(featuresArray);
 
         // Change the id of the type of subscribe depending of the label
         switch (label) {
@@ -81,10 +86,7 @@ public class TypeSubscribeFacade {
      *
      * @return la liste des types d'abonnements
      */
-    public void getListTypeOfSubscribe() {
-        for (TypeOfSubscribe typeOfSubscribe : typeOfSubscribeList) {
-            System.out.println(typeOfSubscribe);
-        }
+    public ArrayList<TypeOfSubscribe> getListTypeOfSubscribe() {
+        return typeOfSubscribeList;
     }
-
 }

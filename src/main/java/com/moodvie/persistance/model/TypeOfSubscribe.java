@@ -1,10 +1,13 @@
 package com.moodvie.persistance.model;
 
+import java.util.ArrayList;
+
 public class TypeOfSubscribe {
     private int id;
     private String label;
     private double price;
     private int numberOfDays;
+    private ArrayList<String> features;
 
     public TypeOfSubscribe() {}
 
@@ -12,6 +15,7 @@ public class TypeOfSubscribe {
         this.label = label;
         this.price = price;
         this.numberOfDays = numberOfDays;
+        this.features = new ArrayList<>();
     }
 
     // Getters et setters
@@ -76,6 +80,22 @@ public class TypeOfSubscribe {
             throw new IllegalArgumentException("Number of days must be positive");
         }
         this.numberOfDays = numberOfDays;
+    }
+
+    /**
+     * @return the features
+     */
+    public ArrayList<String> getFeatures() {
+        return features;
+    }
+
+    /**
+     * @param strings the features to set
+     */
+    public void setFeatures(String[] strings) {
+        for (String string : strings) {
+            this.features.add(string);
+        }
     }
 
     @Override

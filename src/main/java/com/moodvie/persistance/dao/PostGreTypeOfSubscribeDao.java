@@ -36,7 +36,8 @@ public class PostGreTypeOfSubscribeDao extends TypeOfSubscribeDao {
                 "id SERIAL PRIMARY KEY, " +
                 "label VARCHAR(100), " +
                 "price DECIMAL(10,2), " +
-                "numberOfDay INTEGER " +
+                "numberOfDays INTEGER, " +
+                "features VARCHAR(100)[] " +
                 ")";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
@@ -52,7 +53,7 @@ public class PostGreTypeOfSubscribeDao extends TypeOfSubscribeDao {
      */
     @Override
     public void addTypeOfSubscribe(TypeOfSubscribe typeOfSubscribe) throws RuntimeException{
-        try (PreparedStatement ps =  connection.prepareStatement("INSERT INTO typeOfSubscribes (id, label, price, numberOfDay) VALUES (?, ?, ?, ?)")) {
+        try (PreparedStatement ps =  connection.prepareStatement("INSERT INTO typeOfSubscribes (id, label, price, numberOfDays, features) VALUES (?, ?, ?, ?, ?)")) {
             setTypeOfSubscribe(typeOfSubscribe, ps);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -70,6 +71,7 @@ public class PostGreTypeOfSubscribeDao extends TypeOfSubscribeDao {
         ps.setString(2, typeOfSubscribe.getLabel());
         ps.setDouble(3, typeOfSubscribe.getPrice());
         ps.setInt(4, typeOfSubscribe.getNumberOfDays());
+        ps.setArray(5, connection.createArrayOf("VARCHAR", typeOfSubscribe.getFeatures().toArray()));
     }
     
     /**
@@ -79,9 +81,9 @@ public class PostGreTypeOfSubscribeDao extends TypeOfSubscribeDao {
     @Override
     public void updateTypeOfSubscribe(TypeOfSubscribe typeOfSubscribe) throws RuntimeException{
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE typeOfSubscribes SET id = ?, label = ?, price = ?, numberOfDays = ? WHERE id = ?");
+            PreparedStatement ps = connection.prepareStatement("UPDATE typeOfSubscribes SET id = ?, label = ?, price = ?, numberOfDays = ?, features = ? WHERE id = ?");
             setTypeOfSubscribe(typeOfSubscribe, ps);
-            ps.setInt(7, typeOfSubscribe.getId());
+            ps.setInt(8, typeOfSubscribe.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -101,6 +103,7 @@ public class PostGreTypeOfSubscribeDao extends TypeOfSubscribeDao {
             typeOfSubscribe.setLabel(rs.getString("label"));
             typeOfSubscribe.setPrice(rs.getDouble("price"));
             typeOfSubscribe.setNumberOfDays(rs.getInt("numberOfDays"));
+            typeOfSubscribe.setFeatures((String[]) rs.getArray("features").getArray());
 
             return typeOfSubscribe;
         }
