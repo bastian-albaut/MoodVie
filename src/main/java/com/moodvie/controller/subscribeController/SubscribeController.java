@@ -55,7 +55,11 @@ public class SubscribeController {
         setupSubscribeBox(boxAnnualSubscribe, boxTitleAnnualSubscribe, boxFeaturesAnnualSubscribe, boxActionAnnualSubscribe);
     }
 
-    // Get all the types of subscribe
+    /**
+     * Handle the type of subscribe facade
+     *
+     * @return void
+     */
     public void handleTypeSubscribeFacade() {
 
         // Get all the types of subscribe
@@ -87,7 +91,14 @@ public class SubscribeController {
         }
     }
 
-    // Display features in the specified featuresBox
+    /**
+     * Display features in the specified featuresBox
+     *
+     * @param features The list of features to display
+     * @param featuresBox The box where the features will be displayed
+     *
+     * @return void
+     */
     private void displayFeatures(ArrayList<String> features, VBox featuresBox) {
         // Clear existing content
         featuresBox.getChildren().clear(); 
@@ -99,7 +110,14 @@ public class SubscribeController {
         }
     }
 
-    // Display action in the specified actionBox
+    /**
+     * Display the action in the specified actionBox
+     *
+     * @param typeOfSubscribe The type of subscribe
+     * @param actionBox The box where the action will be displayed
+     *
+     * @return void
+     */
     private void displayAction(TypeOfSubscribe typeOfSubscribe, VBox actionBox) {
         // Clear existing content
         actionBox.getChildren().clear(); 
@@ -126,7 +144,11 @@ public class SubscribeController {
         }
     }
 
-    // Get the label of the current subscribe of the user
+    /**
+     * Get the label of the current subscribe of the user
+     *
+     * @return String The label of the current subscribe
+     */
     public String getLabelCurrentSubscribe() {
         // Get the current subscribe
         Subscribe subscribe = subscribeFacade.getSubscribe();
@@ -152,7 +174,16 @@ public class SubscribeController {
         return label;
     }
 
-    // Set up the layout of the subscribe box
+    /**
+     * Set up the layout of the subscribe box
+     *
+     * @param box The box to set up
+     * @param titleBox The box where the title will be displayed
+     * @param featuresBox The box where the features will be displayed
+     * @param actionBox The box where the action will be displayed
+     *
+     * @return void
+     */
     private void setupSubscribeBox(VBox box, VBox titleBox, VBox featuresBox, VBox actionBox) {
         box.prefWidthProperty().bind(hBox.widthProperty().multiply(0.25));
         box.prefHeightProperty().bind(hBox.heightProperty().multiply(0.9));
@@ -161,7 +192,13 @@ public class SubscribeController {
         actionBox.prefHeightProperty().bind(box.heightProperty().multiply(0.25));
     }
 
-    // Handle the change of the type of subscribe
+    /**
+     * Handle the change of the type of subscribe
+     *
+     * @param typeOfSubscribeId The id of the type of subscribe
+     *
+     * @return void
+     */
     private void handleChangeTypeOfSubscribe(int typeOfSubscribeId) {
         // Change the type of subscribe
         boolean isSubscribeChange = subscribeFacade.changeSubscribe(typeOfSubscribeId);
