@@ -89,4 +89,20 @@ public class TypeSubscribeFacade {
     public ArrayList<TypeOfSubscribe> getListTypeOfSubscribe() {
         return typeOfSubscribeList;
     }
+
+    /**
+     * Cette méthode permet de récupérer un type d'abonnement en fonction de son id
+     *
+     * @param id id du type d'abonnement
+     *
+     * @return le type d'abonnement
+     */
+    public TypeOfSubscribe getTypeOfSubscribe(int id) {
+        for (TypeOfSubscribe typeOfSubscribe : typeOfSubscribeList) {
+            if (typeOfSubscribe.getId() == id) {
+                return typeOfSubscribe;
+            }
+        }
+        return null;
+    }
 }

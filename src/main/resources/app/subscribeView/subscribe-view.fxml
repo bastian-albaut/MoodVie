@@ -17,7 +17,6 @@
                 
             </VBox>
             <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionBaseSubscribe">
-                <Label text="Déjà possédé"/>
             </VBox>
         </VBox>
         <VBox styleClass="box" fx:id="boxMonthlySubscribe">
@@ -28,7 +27,6 @@
             <VBox alignment="CENTER" styleClass="boxFeatures" fx:id="boxFeaturesMonthlySubscribe">
             </VBox>
             <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionMonthlySubscribe">
-                <Button text="Acheter maintenant" fx:id="button1"/>
             </VBox>
         </VBox>
         <VBox styleClass="box" fx:id="boxAnnualSubscribe">
@@ -40,7 +38,6 @@
                 
             </VBox>
             <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionAnnualSubscribe">
-                <Button text="Acheter maintenant" fx:id="button2"/>
             </VBox>
         </VBox>
     </HBox>

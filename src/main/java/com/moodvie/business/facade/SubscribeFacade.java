@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import com.moodvie.persistance.dao.SubscribeDao;
 import com.moodvie.persistance.factory.AbstractDaoFactory;
 import com.moodvie.persistance.model.Subscribe;
+import com.moodvie.persistance.model.TypeOfSubscribe;
 
 /**
  * SubscribeFacade est un singleton
@@ -97,5 +98,21 @@ public class SubscribeFacade {
         }
 
         return this.subscribe;
+    }
+
+    /**
+     * Cette méthode permet de récupérer le type d'abonnement courant de l'utilisateur
+     * 
+     * @return le type d'abonnement courant ou null si aucun abonnement n'est actif
+     */
+    public TypeOfSubscribe getTypeOfSubscribe(){
+        // Get the type of subscribe id
+        int typeOfSubscribeId = this.subscribe.getTypeOfSubscribeId();
+
+        // Get the type of subscribe
+        TypeSubscribeFacade typeSubscribeFacade = TypeSubscribeFacade.getInstance();
+        TypeOfSubscribe typeOfSubscribe = typeSubscribeFacade.getTypeOfSubscribe(typeOfSubscribeId);
+
+        return typeOfSubscribe;
     }
 }

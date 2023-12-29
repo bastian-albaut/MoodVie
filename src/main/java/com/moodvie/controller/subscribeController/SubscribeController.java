@@ -29,9 +29,6 @@ public class SubscribeController {
     private Label priceTypeOfSubscribeBase, priceTypeOfSubscribeMonthly, priceTypeOfSubscribeAnnual;
 
     @FXML
-    private Button button1, button2;
-
-    @FXML
     private VBox boxTitleBaseSubscribe, boxTitleMonthlySubscribe, boxTitleAnnualSubscribe;
 
     @FXML
@@ -51,12 +48,10 @@ public class SubscribeController {
         // Get informations from facades
         handleTypeSubscribeFacade();
 
+        // Set up the layout of the subscribe box
         setupSubscribeBox(boxBaseSubscribe, boxTitleBaseSubscribe, boxFeaturesBaseSubscribe, boxActionBaseSubscribe);
         setupSubscribeBox(boxMonthlySubscribe, boxTitleMonthlySubscribe, boxFeaturesMonthlySubscribe, boxActionMonthlySubscribe);
         setupSubscribeBox(boxAnnualSubscribe, boxTitleAnnualSubscribe, boxFeaturesAnnualSubscribe, boxActionAnnualSubscribe);
-
-        setupButtonEventHandler(button1, "Button 1 clicked!");
-        setupButtonEventHandler(button2, "Button 2 clicked!");
     }
 
     // Get all the types of subscribe
@@ -67,21 +62,25 @@ public class SubscribeController {
 
         for(TypeOfSubscribe typeOfSubscribe : typeOfSubscribeList) {
             String label = typeOfSubscribe.getLabel();
+
             switch (label) {
                 case "Basique":
                     titleTypeOfSubscribeBase.setText("Abonnement " + label);
                     priceTypeOfSubscribeBase.setText("Gratuit");
                     displayFeatures(typeOfSubscribe.getFeatures(), boxFeaturesBaseSubscribe);
+                    displayAction(typeOfSubscribe, boxActionBaseSubscribe);
                     break;
                 case "Mensuel":
                     titleTypeOfSubscribeMonthly.setText("Abonnement " + label);
                     priceTypeOfSubscribeMonthly.setText(typeOfSubscribe.getPrice() + "€" + "/mois");
                     displayFeatures(typeOfSubscribe.getFeatures(), boxFeaturesMonthlySubscribe);
+                    displayAction(typeOfSubscribe, boxActionMonthlySubscribe);
                     break;
                 case "Annuel":
                     titleTypeOfSubscribeAnnual.setText("Abonnement " + label);
                     priceTypeOfSubscribeAnnual.setText(typeOfSubscribe.getPrice() + "€" + "/an");
                     displayFeatures(typeOfSubscribe.getFeatures(), boxFeaturesAnnualSubscribe);
+                    displayAction(typeOfSubscribe, boxActionAnnualSubscribe);
                     break;
             }
         }
@@ -97,6 +96,53 @@ public class SubscribeController {
             Label featureLabel = new Label(feature);
             featuresBox.getChildren().add(featureLabel);
         }
+    }
+
+    // Display action in the specified actionBox
+    private void displayAction(TypeOfSubscribe typeOfSubscribe, VBox actionBox) {
+        // Clear existing content
+        actionBox.getChildren().clear(); 
+
+        // Get the label of the current subscribe
+        String currentLabel = getLabelCurrentSubscribe();
+
+        // Get the label of the type of subscribe
+        String label = typeOfSubscribe.getLabel();
+
+        // If the current subscribe is the same as the type of subscribe, display a message
+        if (currentLabel.equals(label)) {
+            Label actionLabel = new Label("Déjà possédé");
+            actionBox.getChildren().add(actionLabel);
+        } else {
+            Button actionButton = new Button("Souscrire");
+            actionBox.getChildren().add(actionButton);
+        }
+    }
+
+    // Get the label of the current subscribe of the user
+    public String getLabelCurrentSubscribe() {
+        // Get the current subscribe
+        Subscribe subscribe = subscribeFacade.getSubscribe();
+
+        // If the current subscribe is null, return null
+        if (subscribe == null) {
+            System.out.println("Subscribe is null");
+            return null;
+        }
+
+        // Get the type of subscribe
+        TypeOfSubscribe typeOfSubscribe = subscribeFacade.getTypeOfSubscribe();
+
+        // If the type of subscribe is null, return null
+        if (typeOfSubscribe == null) {
+            System.out.println("Type of subscribe is null");
+            return null;
+        }
+
+        // Get the label of the type of subscribe
+        String label = typeOfSubscribe.getLabel();
+
+        return label;
     }
 
     // Set up the layout of the subscribe box
