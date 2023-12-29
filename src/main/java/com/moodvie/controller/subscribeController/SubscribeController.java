@@ -9,6 +9,7 @@ import com.moodvie.persistance.model.TypeOfSubscribe;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -109,12 +110,18 @@ public class SubscribeController {
         // Get the label of the type of subscribe
         String label = typeOfSubscribe.getLabel();
 
+        // Get the id of the type of subscribe
+        int typeOfSubscribeId = typeOfSubscribe.getId();
+
         // If the current subscribe is the same as the type of subscribe, display a message
         if (currentLabel.equals(label)) {
             Label actionLabel = new Label("Déjà possédé");
             actionBox.getChildren().add(actionLabel);
         } else {
             Button actionButton = new Button("Souscrire");
+            actionButton.setOnAction(event -> {
+                handleChangeTypeOfSubscribe(typeOfSubscribeId);
+            });
             actionBox.getChildren().add(actionButton);
         }
     }
@@ -154,13 +161,32 @@ public class SubscribeController {
         actionBox.prefHeightProperty().bind(box.heightProperty().multiply(0.25));
     }
 
-    // Set up the event handler for the button
-    private void setupButtonEventHandler(Button button, String message) {
-        button.setOnAction(event -> handleButtonClick(message));
-    }
+    // Handle the change of the type of subscribe
+    private void handleChangeTypeOfSubscribe(int typeOfSubscribeId) {
+        // Change the type of subscribe
+        boolean isSubscribeChange = subscribeFacade.changeSubscribe(typeOfSubscribeId);
 
-    // Handle the button click event
-    private void handleButtonClick(String message) {
-        System.out.println(message);
+        // If the type of subscribe has been changed, display a message
+        if (isSubscribeChange) {
+            
+            // Refresh the page
+            initialize();
+            
+            // Afficher un message de succès
+            String label = getLabelCurrentSubscribe();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Changement d'abonnement");
+            alert.setHeaderText(null);
+            alert.setContentText("Vous avez maintenant l'abonnement " + label + " !");
+            alert.showAndWait();
+
+        } else {
+            // Afficher un message d'erreur
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Changement d'abonnement");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Une erreur est survenue lors du changement d'abonnement !");
+            errorAlert.showAndWait();
+        }
     }
 }
