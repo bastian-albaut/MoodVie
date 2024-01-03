@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.filmController.FilmDetailsController" stylesheets="@style.css" styleClass="film-details-container">
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="backButton" text="Retour" onAction="#onBack"/>
+        <Button fx:id="addToWatchlistButton" text="Ajouter à la liste" onAction="#onAddToWatchlist"/>
+        <ImageView fx:id="posterImageView" fitWidth="300" fitHeight="450" preserveRatio="true" styleClass="film-poster"/>
+        <Label fx:id="titleLabel" text="Title" styleClass="film-title-detail"/>
+        <HBox spacing="15">
+            <VBox spacing="5">
+                <Label text="Year" styleClass="film-info-title"/>
+                <Label fx:id="yearLabel" text="1977" styleClass="film-info-content"/>
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Genre" styleClass="film-info-title"/>
+                <Label fx:id="genreLabel" text="Action, Adventure" styleClass="film-info-content"/>
+            </VBox>
+        </HBox>
+        <Label text="Plot" styleClass="film-info-title"/>
+        <Label fx:id="plotLabel" text="Plot description goes here..." styleClass="film-info-content" wrapText="true"/>
+        <!-- Ajoutez d'autres éléments d'information ici -->
+    </HBox>
+</VBox>

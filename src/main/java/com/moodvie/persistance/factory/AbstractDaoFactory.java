@@ -1,5 +1,7 @@
 package com.moodvie.persistance.factory;
 
+import com.moodvie.persistance.dao.FilmDao;
+import com.moodvie.persistance.dao.LogDao;
 import com.moodvie.persistance.dao.UserDao;
 
 /**
@@ -28,4 +30,6 @@ public abstract class AbstractDaoFactory {
      */
     abstract public UserDao getUserDao();
     // autres méthodes pour différents types de DAO
+    abstract public LogDao getLogDao();
+    abstract public FilmDao getFilmDao();
 }

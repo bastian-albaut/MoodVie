@@ -1,6 +1,7 @@
 package com.moodvie.controller.filmController;
 
 import com.moodvie.business.facade.FilmFacade;
+import com.moodvie.controller.NavigationController;
 import com.moodvie.persistance.model.Film;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class FilmController {
+public class FilmSearchController {
 
     FilmFacade filmFacade = FilmFacade.getInstance();
 
@@ -73,7 +74,7 @@ public class FilmController {
         title.getStyleClass().add("film-title");
 
         card.getChildren().addAll(poster, title);
-        card.setOnMouseClicked(event -> showFilmDetails(film));
+        card.setOnMouseClicked(event -> NavigationController.getInstance().loadFilmDetailView(filmFacade.getFilm(film.getImdbID())));;
         return card;
     }
 }

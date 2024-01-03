@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.logController.LogController" stylesheets="@log-style.css">
+    <children>
+        <Label text="Application Logs" styleClass="header-label"/>
+        <TableView fx:id="logTableView">
+            <columns>
+                <TableColumn fx:id="dateColumn" text="Date"/>
+                <TableColumn fx:id="actionColumn" text="Action"/>
+                <TableColumn fx:id="userIdColumn" text="User ID"/>
+                <TableColumn fx:id="userNameColumn" text="User Name"/>
+                <!-- Ajoutez d'autres colonnes si nécessaire -->
+            </columns>
+        </TableView>
+    </children>
+    <VBox.margin>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </VBox.margin>
+</VBox>

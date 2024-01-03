@@ -5,10 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
+    private static final Logger logger = LogManager.getLogger(Main.class);
     @Override
     public void start(Stage stage) throws IOException {
         try {
@@ -16,7 +20,7 @@ public class Main extends Application {
             Parent view = loader.load();
 
             Scene scene = new Scene(view);
-            String css = getClass().getResource("/app/style.css").toExternalForm();
+            String css = Objects.requireNonNull(getClass().getResource("/app/style.css")).toExternalForm();
             scene.getStylesheets().add(css);
 
             stage.setScene(scene);
@@ -24,8 +28,8 @@ public class Main extends Application {
             stage.setMinWidth(800);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
-
+            logger.error("Error while loading the main view : " + e.getMessage());
+            throw e;
         }
     }
 

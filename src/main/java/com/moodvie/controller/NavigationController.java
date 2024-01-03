@@ -1,6 +1,8 @@
 package com.moodvie.controller;
 
 import com.moodvie.business.facade.UserFacade;
+import com.moodvie.controller.filmController.FilmDetailsController;
+import com.moodvie.persistance.model.Film;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
@@ -49,6 +51,36 @@ public class NavigationController {
     public void loadRegisterView() {
         loadView("/app/register-view.fxml");
     }
+
+    /**
+     * Load the log page view
+     */
+    public void loadLogPageView() {
+        loadView("/app/logView/log-view.fxml");
+    }
+
+    /**
+     * Load the film view
+     */
+    public void loadFilmView() {
+        loadView("/app/filmView/searchFilms-view.fxml");
+    }
+
+    public void loadFilmDetailView(Film film) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/filmView/detailFilm-view.fxml"));
+            Parent view = loader.load();
+
+            // Ici, nous obtenons le contrôleur de la vue des détails du film
+            FilmDetailsController controller = loader.getController();
+            controller.setFilm(film); // Méthode à créer dans FilmDetailsController
+
+            mainContentArea.getChildren().setAll(view);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * handle the disconnect
      */

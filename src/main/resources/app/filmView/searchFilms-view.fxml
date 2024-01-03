@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.filmController.FilmController"  stylesheets="@style.css">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.filmController.FilmSearchController" stylesheets="@style.css">
     <TextField fx:id="searchField" promptText="Rechercher un film..."/>
     <Button fx:id="searchButton" text="Rechercher" onAction="#onSearch"/>
     <FlowPane fx:id="filmsFlowPane" alignment="CENTER">

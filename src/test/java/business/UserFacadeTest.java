@@ -43,7 +43,7 @@ public class UserFacadeTest {
 
 
         User expectedUser = new User(pseudo,firstname,lastname,birthdate,email,password);
-        when(userDaoMock.getUser(eq(email))).thenReturn(expectedUser);
+        when(userDaoMock.get(eq(email))).thenReturn(expectedUser);
 
         // Test the login method
         UserFacade userFacade = UserFacade.getInstance();

@@ -1,4 +1,4 @@
-package com.moodvie.persistance;
+package com.moodvie.persistance.model;
 
 import com.moodvie.persistance.model.Film;
 
