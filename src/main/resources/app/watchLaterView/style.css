@@ -42,13 +42,3 @@
     -fx-font-size: 14px;
     -fx-text-fill: #333;
 }
-
-.watch-later-button {
-    -fx-background-color: #0078D7;
-    -fx-text-fill: white;
-    -fx-padding: 5px 10px;
-    -fx-background-radius: 5px;
-    -fx-font-weight: bold;
-    -fx-font-size: 10px;
-}
-

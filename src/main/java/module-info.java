@@ -16,6 +16,7 @@ module org.openjfx.javafxmavenarchetypes {
     opens com.moodvie.controller to javafx.fxml;
     opens com.moodvie.controller.component.navBar to javafx.fxml;
     opens com.moodvie.controller.userController to javafx.fxml;
+    opens com.moodvie.controller.watchLaterController to javafx.fxml;
     opens com.moodvie.controller.logController to javafx.fxml;
     opens com.moodvie.controller.filmController to javafx.fxml;
 

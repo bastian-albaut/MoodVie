@@ -12,7 +12,6 @@ import java.sql.*;
 public class PostGreUserDao extends UserDao{
     private final Connection connection = DatabaseConnection.getInstance().getConnection();
     public PostGreUserDao() {
-        dropTable();
         createTable();
     }
 

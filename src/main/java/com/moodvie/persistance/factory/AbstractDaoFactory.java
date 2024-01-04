@@ -3,6 +3,7 @@ package com.moodvie.persistance.factory;
 import com.moodvie.persistance.dao.FilmDao;
 import com.moodvie.persistance.dao.LogDao;
 import com.moodvie.persistance.dao.UserDao;
+import com.moodvie.persistance.dao.WatchLaterDao;
 
 /**
  * DaoFactory est un singleton
@@ -32,4 +33,6 @@ public abstract class AbstractDaoFactory {
     // autres méthodes pour différents types de DAO
     abstract public LogDao getLogDao();
     abstract public FilmDao getFilmDao();
+
+    abstract public WatchLaterDao getWatchLaterDao();
 }

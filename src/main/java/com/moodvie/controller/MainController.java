@@ -11,6 +11,6 @@ public class MainController {
     public void initialize() {
         NavigationController.getInstance().setMainContentArea(contentArea);
         // Chargez la premiere vue
-        NavigationController.getInstance().loadLogPageView();
+        NavigationController.getInstance().loadFilmView();
     }
 }

@@ -1,9 +1,14 @@
 package com.moodvie.controller.filmController;
 
 import com.moodvie.business.facade.FilmFacade;
+import com.moodvie.business.facade.UserFacade;
+import com.moodvie.business.facade.WatchLaterFacade;
 import com.moodvie.controller.NavigationController;
 import com.moodvie.persistance.model.Film;
+import com.moodvie.persistance.model.User;
+import com.moodvie.persistance.model.WatchLater;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -15,6 +20,10 @@ import java.util.List;
 public class FilmSearchController {
 
     FilmFacade filmFacade = FilmFacade.getInstance();
+
+    WatchLaterFacade watchLaterFacade = WatchLaterFacade.getInstance();
+
+    UserFacade userFacade = UserFacade.getInstance();
 
     @FXML
     private TextField searchField;
@@ -41,17 +50,54 @@ public class FilmSearchController {
         }
     }
 
-    private void showFilmDetails(Film film) {
-        Stage detailsStage = new Stage();
-        detailsStage.setTitle(film.getTitle());
+    private void addFilmToWatchLater(Film film) {
+        User currentUser = userFacade.getUser();
 
-        VBox container = new VBox(10);
-        // Ajoutez des composants pour afficher les détails du film
-
-        Scene scene = new Scene(container, 300, 200); // Ajustez la taille selon les besoins
-        detailsStage.setScene(scene);
-        detailsStage.show();
+        if (currentUser != null) {
+            watchLaterFacade.add(new WatchLater(currentUser.getId(), film.getImdbID()));
+            System.out.println("Le film a été ajouté à la liste");
+        }else {
+            System.out.println("Erreur : Aucun utilisateur connecté.");
+        }
     }
+
+    private void removeFilmFromWatchLater(Film film) {
+        User currentUser = userFacade.getUser();
+
+        if (currentUser != null) {
+            WatchLater watchLater = watchLaterFacade.get(film.getImdbID(), currentUser.getId());
+
+            if (watchLater != null && watchLater.getIdFilm() != null) {
+                watchLaterFacade.delete(watchLater.getIdWatchLater());
+                System.out.println("Le film a été retiré de la liste");
+            }
+        } else {
+            System.out.println("Erreur : Aucun utilisateur connecté.");
+        }
+    }
+
+    private void updateWatchLaterButton(Button button, Film film) {
+        User currentUser = userFacade.getUser();
+
+        if (currentUser != null) {
+            WatchLater watchLater = watchLaterFacade.get(film.getImdbID(), currentUser.getId());
+
+            if (watchLater != null && watchLater.getIdFilm() != null) {
+                // Le film est déjà dans la liste
+                button.setText("Retirer");
+                button.setOnAction(event -> removeFilmFromWatchLater(film));
+            } else {
+                // Le film n'est pas dans la liste
+                button.setText("Ajouter");
+                button.setOnAction(event -> addFilmToWatchLater(film));
+            }
+        } else {
+            button.setText("Ajouter");
+            button.setOnAction(event -> System.out.println("Erreur : Aucun utilisateur connecté."));
+        }
+    }
+
+
 
     private VBox createFilmCard(Film film) {
         VBox card = new VBox(10);
@@ -73,7 +119,18 @@ public class FilmSearchController {
         Label title = new Label(film.getTitle());
         title.getStyleClass().add("film-title");
 
-        card.getChildren().addAll(poster, title);
+        Button watchLaterButton = new Button();
+        watchLaterButton.getStyleClass().add("watch-later-button");
+
+        updateWatchLaterButton(watchLaterButton, film);
+
+
+        // Utiliser un StackPane pour superposer le bouton sur l'ImageView
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(poster, watchLaterButton);
+        StackPane.setAlignment(watchLaterButton, Pos.BOTTOM_RIGHT); // Positionne le bouton en bas à droite
+
+        card.getChildren().addAll(stackPane, title);
         card.setOnMouseClicked(event -> NavigationController.getInstance().loadFilmDetailView(filmFacade.getFilm(film.getImdbID())));;
         return card;
     }

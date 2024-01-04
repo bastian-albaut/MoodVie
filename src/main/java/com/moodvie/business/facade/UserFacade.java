@@ -23,6 +23,7 @@ public class UserFacade implements Observable {
 
     private UserFacade() {
         this.abstractDaoFactory = AbstractDaoFactory.getFactory();
+        this.login("k", "k");
     }
 
     public static synchronized UserFacade getInstance() {

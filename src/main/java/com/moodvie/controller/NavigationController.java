@@ -81,6 +81,10 @@ public class NavigationController {
         }
     }
 
+    public void loadWatchLaterView() {
+        loadView("/app/watchLaterView/watchLater-view.fxml");
+    }
+
     /**
      * handle the disconnect
      */
