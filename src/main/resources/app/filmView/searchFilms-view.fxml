@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.filmController.FilmSearchController" stylesheets="@style.css">
+    <TextField fx:id="searchField" promptText="Rechercher un film..."/>
+    <Button fx:id="searchButton" text="Rechercher" onAction="#onSearch"/>
+    <FlowPane fx:id="filmsFlowPane" alignment="CENTER">
+        <!-- Ajoutez vos éléments de films ici -->
+    </FlowPane>
+</VBox>

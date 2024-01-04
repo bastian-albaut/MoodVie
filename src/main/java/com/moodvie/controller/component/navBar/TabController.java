@@ -37,6 +37,14 @@ public class TabController {
             NavigationController.getInstance().loadRegisterView();
         }else if (actionCommand.get().equals("logout")) {
             NavigationController.getInstance().handleDisconnect();
+        }else if (actionCommand.get().equals("loadHomeView")) {
+            NavigationController.getInstance().loadFilmView();
+        }else if (actionCommand.get().equals("loadFilmSearchView")) {
+            NavigationController.getInstance().loadFilmView();
+        }else if (actionCommand.get().equals("loadWatchLaterView")) {
+            NavigationController.getInstance().loadWatchLaterView();
+        } else if (actionCommand.get().equals("loadLogView")) {
+            NavigationController.getInstance().loadLogPageView();
         }
     }
 

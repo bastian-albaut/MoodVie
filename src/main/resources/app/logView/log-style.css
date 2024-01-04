@@ -1,0 +1,28 @@
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+.log-text-area {
+    -fx-font-family: "Courier New", Courier, monospace;
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+    -fx-background-color: #f7f7f7;
+    -fx-border-color: #cccccc;
+    -fx-border-insets: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 10px;
+}
+
+/* Adding a little style to the scroll bar inside the TextArea */
+.scroll-bar {
+    -fx-background-color: #efefef;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #cccccc;
+    -fx-border-color: #b4b4b4;
+}

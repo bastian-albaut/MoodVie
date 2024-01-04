@@ -27,9 +27,13 @@ public class NavBarController implements InvalidationListener {
 
     private void updateTabsBasedOnLoginStatus() {
         navBarContainer.getChildren().clear(); // Nettoyer les onglets existants
+        addTab("Accueil", "loadHomeView");
+        addTab("Rechercher", "loadFilmSearchView");
 
         if (isUserLoggedIn) {
             addTab("Profil", "loadProfilView");
+            addTab("Mes films", "loadWatchLaterView");
+            addTab("Log", "loadLogView");
             addTab("Déconnexion", "logout");
         } else {
             addTab("Connexion", "loadLoginView");

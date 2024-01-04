@@ -12,7 +12,6 @@ import java.sql.*;
 public class PostGreUserDao extends UserDao{
     private final Connection connection = DatabaseConnection.getInstance().getConnection();
     public PostGreUserDao() {
-        dropTable();
         createTable();
     }
 
@@ -54,7 +53,7 @@ public class PostGreUserDao extends UserDao{
      * @param user l'utilisateur à ajouter
      */
     @Override
-    public void addUser(User user) throws RuntimeException{
+    public void add(User user) throws RuntimeException{
         try (PreparedStatement ps =  connection.prepareStatement("INSERT INTO users (pseudo,firstName,lastName,birthDate,email,password) VALUES (?, ?, ?, ?, ?, ?)")) {
             setUser(user, ps);
             ps.executeUpdate();
@@ -82,12 +81,12 @@ public class PostGreUserDao extends UserDao{
      * @param email l'email de l'utilisateur à récupérer
      *              @return l'utilisateur récupéré
      */
-    public User getUser(String email) throws RuntimeException{
+    public User get(String email) throws RuntimeException{
         // code pour récupérer un utilisateur dans une base de données SQL
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM users WHERE email = ?");
             ps.setString(1, email);
-            User user = getUser(ps);
+            User user = get(ps);
             if (user != null) return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -100,7 +99,7 @@ public class PostGreUserDao extends UserDao{
      * @param ps la requête SQL à exécuter
      *              @return l'utilisateur récupéré
      */
-    private User getUser(PreparedStatement ps) throws SQLException {
+    private User get(PreparedStatement ps) throws SQLException {
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             User user = new User();
@@ -121,7 +120,7 @@ public class PostGreUserDao extends UserDao{
      * @param user l'utilisateur à mettre à jour
      */
     @Override
-    public void updateUser(User user) throws RuntimeException{
+    public void update(User user) throws RuntimeException{
         // code pour mettre à jour un utilisateur dans une base de données SQL
         try {
             PreparedStatement ps = connection.prepareStatement("UPDATE users SET pseudo = ?, firstName = ?, lastName = ?, birthDate = ?, email = ?, password = ? WHERE id = ?");
@@ -138,12 +137,12 @@ public class PostGreUserDao extends UserDao{
      * @param userId l'identifiant de l'utilisateur à récupérer
      * @return l'utilisateur récupéré
      */
-    public User getUser(int userId) throws RuntimeException{
+    public User get(Integer userId) throws RuntimeException{
         // code pour récupérer un utilisateur dans une base de données SQL
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
             ps.setInt(1, userId);
-            User user = getUser(ps);
+            User user = get(ps);
             if (user != null) return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -155,7 +154,7 @@ public class PostGreUserDao extends UserDao{
      * Cette méthode supprime un utilisateur de la base de données
      * @param userId l'identifiant de l'utilisateur à supprimer
      */
-    public void deleteUser(int userId) throws RuntimeException{
+    public void delete(Integer userId) throws RuntimeException{
         // code pour supprimer un utilisateur dans une base de données SQL
         try {
             PreparedStatement ps = connection.prepareStatement("DELETE FROM users WHERE id = ?");

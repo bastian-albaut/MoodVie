@@ -23,6 +23,7 @@ public class UserFacade implements Observable {
 
     private UserFacade() {
         this.abstractDaoFactory = AbstractDaoFactory.getFactory();
+        this.login("k", "k");
     }
 
     public static synchronized UserFacade getInstance() {
@@ -46,14 +47,14 @@ public class UserFacade implements Observable {
         UserDao UserDao = abstractDaoFactory.getUserDao();
 
         // Vérifie si un utilisateur existe déjà pour cet email
-        if (UserDao.getUser(email) != null) {
+        if (UserDao.get(email) != null) {
             return false;
         }
 
         User user = new User(pseudo,firstname,lastname,birthday,email,password);
 
         try{
-            UserDao.addUser(user);
+            UserDao.add(user);
         } catch(Exception e){
             System.out.println(e);
         }
@@ -77,7 +78,7 @@ public class UserFacade implements Observable {
             return null;
         }
 
-        User user = UserDao.getUser(email);
+        User user = UserDao.get(email);
         System.out.println("user : " + user);
 
         // Verifie si l'utilisateur existe
@@ -113,7 +114,7 @@ public class UserFacade implements Observable {
         UserDao UserDao = abstractDaoFactory.getUserDao();
 
         try {
-            UserDao.deleteUser(this.user.getId());
+            UserDao.delete(this.user.getId());
         } catch(Exception e){
             System.out.println(e);
             return false;
@@ -149,14 +150,14 @@ public class UserFacade implements Observable {
         UserDao UserDao = abstractDaoFactory.getUserDao();
 
         // Vérifie si un utilisateur existe déjà pour cet email
-        if (UserDao.getUser(email) != null) {
+        if (UserDao.get(email) != null) {
             return null;
         }
 
         User user = new User(pseudo, firstname, lastname, birthday, email, password);
 
         try {
-            UserDao.updateUser(user);
+            UserDao.update(user);
         } catch (Exception e) {
             System.out.println(e);
         }

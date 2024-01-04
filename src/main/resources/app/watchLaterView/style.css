@@ -1,0 +1,44 @@
+.film-card {
+    -fx-margin: 10px;
+    -fx-padding: 10;
+    -fx-alignment: center;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d3d3d3;
+    -fx-border-radius: 15;
+    -fx-box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10);
+}
+
+.film-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 5px;
+}
+
+.film-details-container {
+    -fx-font-family: 'Arial';
+    -fx-background-color: #fff;
+}
+
+.film-poster {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10);
+    -fx-box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.film-title-detail {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.film-info-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #666;
+}
+
+.film-info-content {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
