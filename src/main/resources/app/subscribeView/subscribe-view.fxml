@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.subscribeController.SubscribeController">
+    <HBox alignment="CENTER" spacing="20" fx:id="hBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox styleClass="box" fx:id="boxBaseSubscribe">
+            <VBox alignment="CENTER" styleClass="boxTitle" fx:id="boxTitleBaseSubscribe">
+                <Label styleClass="labelTitle" fx:id="titleTypeOfSubscribeBase"/>
+                <Label styleClass="labelPrice" fx:id="priceTypeOfSubscribeBase"/>
+            </VBox>
+            <VBox alignment="CENTER" styleClass="boxFeatures" fx:id="boxFeaturesBaseSubscribe">
+                
+            </VBox>
+            <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionBaseSubscribe">
+            </VBox>
+        </VBox>
+        <VBox styleClass="box" fx:id="boxMonthlySubscribe">
+            <VBox alignment="CENTER" styleClass="boxTitle" fx:id="boxTitleMonthlySubscribe">
+                <Label styleClass="labelTitle" fx:id="titleTypeOfSubscribeMonthly"/>
+                <Label styleClass="labelPrice" fx:id="priceTypeOfSubscribeMonthly"/>
+            </VBox>
+            <VBox alignment="CENTER" styleClass="boxFeatures" fx:id="boxFeaturesMonthlySubscribe">
+            </VBox>
+            <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionMonthlySubscribe">
+            </VBox>
+        </VBox>
+        <VBox styleClass="box" fx:id="boxAnnualSubscribe">
+            <VBox alignment="CENTER" styleClass="boxTitle" fx:id="boxTitleAnnualSubscribe">
+                <Label styleClass="labelTitle" fx:id="titleTypeOfSubscribeAnnual"/>
+                <Label styleClass="labelPrice" fx:id="priceTypeOfSubscribeAnnual"/>
+            </VBox>
+            <VBox alignment="CENTER" styleClass="boxFeatures" fx:id="boxFeaturesAnnualSubscribe">
+                
+            </VBox>
+            <VBox alignment="CENTER" styleClass="boxAction" fx:id="boxActionAnnualSubscribe">
+            </VBox>
+        </VBox>
+    </HBox>
+</AnchorPane>
