@@ -39,6 +39,14 @@ public class TabController {
             NavigationController.getInstance().handleDisconnect();
         } else if (actionCommand.get().equals("loadSubscribeView")) {
             NavigationController.getInstance().loadSubscribeView();
+        }else if (actionCommand.get().equals("loadHomeView")) {
+            NavigationController.getInstance().loadFilmView();
+        }else if (actionCommand.get().equals("loadFilmSearchView")) {
+            NavigationController.getInstance().loadFilmView();
+        }else if (actionCommand.get().equals("loadWatchLaterView")) {
+            NavigationController.getInstance().loadWatchLaterView();
+        } else if (actionCommand.get().equals("loadLogView")) {
+            NavigationController.getInstance().loadLogPageView();
         } else {
             System.out.println("Unknown action command: " + actionCommand.get());
         }

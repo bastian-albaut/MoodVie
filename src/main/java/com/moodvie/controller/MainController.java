@@ -18,7 +18,7 @@ public class MainController {
         
         NavigationController.getInstance().setMainContentArea(contentArea);
         // Chargez la premiere vue
-        NavigationController.getInstance().loadLoginView();
+        NavigationController.getInstance().loadFilmView();
     }
 
     // Create all types of subscribe 

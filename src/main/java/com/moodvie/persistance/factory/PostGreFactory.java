@@ -1,11 +1,6 @@
 package com.moodvie.persistance.factory;
 
-import com.moodvie.persistance.dao.PostGreSubscribeDao;
-import com.moodvie.persistance.dao.PostGreTypeOfSubscribeDao;
-import com.moodvie.persistance.dao.PostGreUserDao;
-import com.moodvie.persistance.dao.SubscribeDao;
-import com.moodvie.persistance.dao.TypeOfSubscribeDao;
-import com.moodvie.persistance.dao.UserDao;
+import com.moodvie.persistance.dao.*;
 
 /**
  * PostGreFactory est une implémentation de AbstractDaoFactory
@@ -16,6 +11,12 @@ public class PostGreFactory extends AbstractDaoFactory {
     UserDao userDao;
     SubscribeDao subscribeDao;
     TypeOfSubscribeDao typeOfSubscribeDao;
+
+    LogDao logDao;
+
+    FilmDao filmDao;
+
+    WatchLaterDao watchLaterDao;
 
     @Override
     public UserDao getUserDao() {
@@ -43,4 +44,27 @@ public class PostGreFactory extends AbstractDaoFactory {
         }
         return typeOfSubscribeDao;
     }
+    public LogDao getLogDao() {
+        // retourne une implémentation de persistance.dao.LogDao spécifique à SQL
+        if (logDao == null) {
+            logDao = new PostGreLogDao();
+        }
+        return logDao;
+    }
+    public FilmDao getFilmDao() {
+        // retourne une implémentation de persistance.dao.FilmDao spécifique à SQL
+        if (filmDao == null) {
+            filmDao = new OMDbApiFilmDao();
+        }
+        return filmDao;
+    }
+
+    public WatchLaterDao getWatchLaterDao() {
+        if (watchLaterDao == null) {
+            watchLaterDao = new PostGreWatchLaterDao();
+        }
+        return watchLaterDao;
+    }
+    // implémentations pour d'autres DAO si nécessaire
+
 }
