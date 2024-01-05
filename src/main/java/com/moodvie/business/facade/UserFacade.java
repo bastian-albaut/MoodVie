@@ -63,7 +63,7 @@ public class UserFacade implements Observable {
         }
 
         // Get the user created
-        User userCreated = UserDao.getUser(email);
+        User userCreated = UserDao.get(email);
         System.out.println("userCreated: " + userCreated);
         
         // Create a subscription for the user created
@@ -72,7 +72,7 @@ public class UserFacade implements Observable {
         // Delete the user created if the subscription creation failed
         if (!subscriptionCreated) {
             System.out.println("Failed to create subscription for userId: " + userCreated.getId());
-            UserDao.deleteUser(userCreated.getId());
+            UserDao.delete(userCreated.getId());
             return false;
         }
         

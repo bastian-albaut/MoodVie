@@ -56,14 +56,14 @@ public class NavigationController {
      * Load the log page view
      */
     public void loadLogPageView() {
-        loadView("/app/logView/log-view.fxml");
+        loadView("/app/logView/log-view.fxml", null);
     }
 
     /**
      * Load the film view
      */
     public void loadFilmView() {
-        loadView("/app/filmView/searchFilms-view.fxml");
+        loadView("/app/filmView/searchFilms-view.fxml", null);
     }
 
     public void loadFilmDetailView(Film film) {
@@ -82,7 +82,7 @@ public class NavigationController {
     }
 
     public void loadWatchLaterView() {
-        loadView("/app/watchLaterView/watchLater-view.fxml");
+        loadView("/app/watchLaterView/watchLater-view.fxml",null);
     }
 
     /**
