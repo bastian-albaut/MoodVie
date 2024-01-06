@@ -42,7 +42,7 @@
             <artifactId>log4j-core</artifactId>
             <version>3.0.0-alpha1</version>
         </dependency>
-        
+
         <!-- JUnit 4 -->
         <dependency>
             <groupId>junit</groupId>
@@ -99,7 +99,7 @@
                     <target>21</target>
                 </configuration>
             </plugin>
-            
+
             <!-- Maven Surefire Plugin to run JUnit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -109,7 +109,7 @@
                     <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
-            
+
             <!-- JavaFX Maven Plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -136,11 +136,11 @@
                 <version>3.1.0</version>
                 <configuration>
                     <archive>
-                    <manifest>
-                        <addClasspath>true</addClasspath>
-                        <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>com.moodvie.Main</mainClass>
-                    </manifest>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.moodvie.Main</mainClass>
+                        </manifest>
                     </archive>
                 </configuration>
             </plugin>
@@ -163,16 +163,16 @@
                                 </transformer>
                             </transformers>
                             <filters>
-                            <filter>
-                                <!-- Exclude the META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA files -->
-                                <artifact>*:*</artifact>
-                                <excludes>
-                                    <exclude>META-INF/*.SF</exclude>
-                                    <exclude>META-INF/*.DSA</exclude>
-                                    <exclude>META-INF/*.RSA</exclude>
-                                </excludes>
-                            </filter>
-                        </filters>
+                                <filter>
+                                    <!-- Exclude the META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA files -->
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>

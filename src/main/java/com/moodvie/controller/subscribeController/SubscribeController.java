@@ -132,7 +132,7 @@ public class SubscribeController {
         int typeOfSubscribeId = typeOfSubscribe.getId();
 
         // If the current subscribe is the same as the type of subscribe, display a message
-        if (currentLabel.equals(label)) {
+        if ((currentLabel != null && !currentLabel.equals("")) || currentLabel.equals(label)) {
             Label actionLabel = new Label("Déjà possédé");
             actionBox.getChildren().add(actionLabel);
         } else {
@@ -156,7 +156,7 @@ public class SubscribeController {
         // If the current subscribe is null, return null
         if (subscribe == null) {
             System.out.println("Subscribe is null");
-            return null;
+            return "";
         }
 
         // Get the type of subscribe
@@ -165,7 +165,7 @@ public class SubscribeController {
         // If the type of subscribe is null, return null
         if (typeOfSubscribe == null) {
             System.out.println("Type of subscribe is null");
-            return null;
+            return "";
         }
 
         // Get the label of the type of subscribe
