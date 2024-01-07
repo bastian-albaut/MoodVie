@@ -5,13 +5,27 @@ public class Rating {
     private int idRating;
     private int idUser;
     private String idFilm;
+    private int value;
+    private String comment;
 
     public Rating() {
     }
 
-    public Rating(int idUser, String idFilm) {
+    public Rating(int idUser, String idFilm, int value, String comment) {
         this.idUser = idUser;
         this.idFilm = idFilm;
+        this.value = value;
+        this.comment = comment;
+    }
+
+    // Getters et setters
+
+    public int getIdRating() {
+        return idRating;
+    }   
+
+    public void setIdRating(int idRating) {
+        this.idRating = idRating;
     }
 
     public int getIdUser() {
@@ -30,13 +44,33 @@ public class Rating {
         this.idFilm = idFilm;
     }
 
-    public int getIdRating() {
-        return idRating;
+    public int getValue() {
+        return value;
     }
 
-    public void setId(int idRating) {
-        this.idRating = idRating;
+    public String getComment() {
+        return comment;
     }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "idRating=" + idRating +
+                ", idUser=" + idUser +
+                ", idFilm='" + idFilm + '\'' +
+                ", value=" + value +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
+
 
     
     

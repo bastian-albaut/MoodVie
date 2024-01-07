@@ -31,6 +31,11 @@ public class RatingFacade {
         return abstractDaoFactory.getRatingDao().get(idUser, idFilm);
     }
 
+    // Méthode pour mettre à jour une note (Rating)
+    private void update(Rating rating) {
+        abstractDaoFactory.getRatingDao().update(rating);
+    }
+
     // Méthode pour supprimer une note (Rating) en fonction de l'ID de la note
     private void delete(int idRating) {
         abstractDaoFactory.getRatingDao().delete(idRating);

@@ -55,6 +55,10 @@ public abstract class AbstractDaoFactory {
 
     abstract public WatchLaterDao getWatchLaterDao();
 
+    /**
+     * Permet de récupérer une instance de RatingDao
+     * @return une instance de RatingDao
+     */
     abstract public RatingDao getRatingDao();
 
 }

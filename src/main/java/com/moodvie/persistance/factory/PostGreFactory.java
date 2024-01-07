@@ -18,6 +18,8 @@ public class PostGreFactory extends AbstractDaoFactory {
 
     WatchLaterDao watchLaterDao;
 
+    RatingDao ratingDao;
+
     @Override
     public UserDao getUserDao() {
         // retourne une implémentation de persistance.dao.UserDao spécifique à SQL
@@ -65,6 +67,14 @@ public class PostGreFactory extends AbstractDaoFactory {
         }
         return watchLaterDao;
     }
+
+    public RatingDao getRatingDao(){
+        if (ratingDao == null) {
+            ratingDao = new PostGreRatingDao();
+        }
+        return ratingDao;
+    }
+
     // implémentations pour d'autres DAO si nécessaire
 
 }
