@@ -23,12 +23,12 @@ public class RatingFacade {
 
     // Méthode pour ajouter une note (Rating) à un film
     private void add(Rating rating) {
-        abstractDaoFactory.getRatingDao().add(rating);
+        abstractDaoFactory.getRatingDao().addRating(rating);
     }
 
     // Méthode pour récupérer une note (Rating) en fonction de l'ID utilisateur et de l'ID du film
     private Rating get(int idUser, String idFilm) {
-        return abstractDaoFactory.getRatingDao().get(idUser, idFilm);
+        return abstractDaoFactory.getRatingDao().getRating(idUser, idFilm);
     }
 
     // Méthode pour mettre à jour une note (Rating)
