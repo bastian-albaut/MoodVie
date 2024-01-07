@@ -3,6 +3,8 @@ package com.moodvie.persistance.dao;
 import com.moodvie.persistance.model.Rating;
 import com.moodvie.persistance.database.DatabaseConnection;
 import java.sql.*;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * PostGreRatingDao est une implémentation de RatingDao spécifique à PostGre
@@ -200,29 +202,6 @@ public class PostGreRatingDao extends RatingDao {
 
 
     /**
-     * Cette méthode permet de récupérer le nombre de notes d'un film
-     * @param idFilm l'id du film
-     * @return le nombre de notes du film
-     */
-    public int getNumberOfRatings(String idFilm) {
-        int numberOfRatings = 0;
-        String sql = "SELECT COUNT(*) FROM ratings WHERE filmId = ?";
-
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, idFilm);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                numberOfRatings = rs.getInt("count");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la récupération des données : " + e.getMessage(), e);
-        }
-
-        return numberOfRatings;
-    }
-
-    /**
      * Cette méthode permet de récupérer les commentaires d'un film
      * @param idFilm l'id du film
      * @return la liste des commentaires du film
@@ -244,8 +223,6 @@ public class PostGreRatingDao extends RatingDao {
 
         return comments;
     }
-
-
 
 
 }
