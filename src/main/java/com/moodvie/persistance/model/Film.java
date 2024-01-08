@@ -52,4 +52,9 @@ public class Film {
     public String getGenre() {
         return Genre;
     }
+   
+    public String toString() {
+        // Cette méthode est utilisée par la ComboBox pour afficher le texte du film
+        return Title; // ou tout autre format que vous préférez
+    }
 }

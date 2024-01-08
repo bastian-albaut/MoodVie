@@ -33,6 +33,9 @@ public class NavBarController implements InvalidationListener {
         if (isUserLoggedIn) {
             addTab("Profil", "loadProfilView");
             addTab("Mes films", "loadWatchLaterView");
+
+            addTab("Humeur", "loadUserMoodView");
+
             addTab("Log", "loadLogView");
             addTab("Déconnexion", "logout");
         } else {

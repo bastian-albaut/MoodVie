@@ -16,6 +16,8 @@ public class PostGreFactory extends AbstractDaoFactory {
 
     WatchLaterDao watchLaterDao;
 
+    UserMoodDao userMoodDao;
+
     @Override
     public UserDao getUserDao() {
         // retourne une implémentation de persistance.dao.UserDao spécifique à SQL
@@ -45,5 +47,15 @@ public class PostGreFactory extends AbstractDaoFactory {
         }
         return watchLaterDao;
     }
-    // implémentations pour d'autres DAO si nécessaire
+
+
+    @Override
+    public UserMoodDao getUserMoodDao() {
+        if (userMoodDao == null) {
+            userMoodDao = new PostGreUserMoodDao(); // Crée une instance de PostGreUserMoodDao
+        }
+        return userMoodDao; // Retourne UserMoodDao
+    }
+  // implémentations pour d'autres DAO si nécessaire
+    
 }

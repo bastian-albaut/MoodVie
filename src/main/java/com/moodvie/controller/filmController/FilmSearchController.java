@@ -9,11 +9,9 @@ import com.moodvie.persistance.model.User;
 import com.moodvie.persistance.model.WatchLater;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 import java.util.List;
 
