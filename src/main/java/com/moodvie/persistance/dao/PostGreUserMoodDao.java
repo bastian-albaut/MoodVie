@@ -11,8 +11,7 @@ public class PostGreUserMoodDao extends UserMoodDao {
     private final Connection connection = DatabaseConnection.getInstance().getConnection();
 
     public PostGreUserMoodDao() {
-        dropTableUserMood();
-        dropTableUserMoodFilm();
+        
         createTable();
     }
 
