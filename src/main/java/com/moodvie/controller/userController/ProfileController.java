@@ -1,5 +1,6 @@
 package com.moodvie.controller.userController;
 
+import com.moodvie.business.facade.LogFacade;
 import com.moodvie.business.facade.UserFacade;
 import com.moodvie.persistance.model.User;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import java.io.IOException;
 public class ProfileController {
 
     private final UserFacade userFacade = UserFacade.getInstance();
+
+    private final LogFacade logFacade = LogFacade.getInstance();
     public TextField emailField;
 
     public TextField firstNameField;
@@ -52,6 +55,7 @@ public class ProfileController {
         if (user != null) {
             // Afficher un message de succès
             // Rediriger vers une autre page si nécessaire
+            logFacade.add(new com.moodvie.persistance.model.Log("Modification", "Modification réussie", user.getPseudo()));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Modification Réussie");
             alert.setHeaderText(null);
@@ -61,6 +65,7 @@ public class ProfileController {
 
         } else {
             // Afficher un message d'erreur
+            logFacade.add(new com.moodvie.persistance.model.Log("Modification", "Modification échouée", email));
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Échec de la Modification");
             errorAlert.setHeaderText(null);

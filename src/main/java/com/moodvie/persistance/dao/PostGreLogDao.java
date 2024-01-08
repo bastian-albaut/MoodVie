@@ -10,12 +10,17 @@ import java.util.List;
 public class PostGreLogDao extends LogDao{
     private final Connection connection = DatabaseConnection.getInstance().getConnection();
 
+   public void dropTable(){
+        String sql = "DROP TABLE log";
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la suppression de la table : " + e.getMessage(), e);
+        }
+    }
+
     public PostGreLogDao() {
         createTable();
-        add(new Log("Création de la table log", "1", "admin"));
-        add(new Log("Création de la table users", "1", "admin"));
-        add(new Log("Création de la table movies", "1", "admin"));
-        add(new Log("Création de la table comments", "1", "admin"));
     }
     /**
      * Cette méthode crée la table log dans la base de données si elle n'existe pas

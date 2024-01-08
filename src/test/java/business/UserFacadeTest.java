@@ -13,8 +13,7 @@ import com.moodvie.business.facade.UserFacade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -84,4 +83,11 @@ public class UserFacadeTest {
         assertNotNull(userAfterRegister);
         assertEquals(false, userAfterRegister);
     }
+    @Test
+    public void testLogout() {
+        UserFacade userFacade = UserFacade.getInstance();
+        userFacade.logout();
+        assertNull("User should be null after logout", userFacade.getUser());
+    }
+
 }

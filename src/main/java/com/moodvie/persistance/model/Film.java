@@ -21,8 +21,11 @@ public class Film {
     private String Actors;
 
 
-
     public Film() {
+    }
+
+    public void setTitle(String Title) {
+        this.Title = Title;
     }
 
     public String getTitle() {
