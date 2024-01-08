@@ -15,6 +15,8 @@ public class RegisterController {
 
     private final LogFacade logFacade = LogFacade.getInstance();
 
+    private final NavigationController navigationController = NavigationController.getInstance();
+
     @FXML
 
     public VBox registrationForm;
@@ -102,6 +104,7 @@ public class RegisterController {
             alert.setHeaderText(null);
             alert.setContentText("Vous êtes bien inscrit !");
             alert.showAndWait();
+            navigationController.loadFilmView();
 
             // Rediriger vers une autre page si nécessaire
         } else {
