@@ -4,6 +4,7 @@ import com.moodvie.persistance.model.Rating;
 import com.moodvie.persistance.database.DatabaseConnection;
 import java.sql.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.ArrayList;
 
 /**
@@ -55,8 +56,11 @@ public class PostGreRatingDao extends RatingDao {
      * @param rating la note à ajouter
      * @param ps la requête SQL à modifier
      */
+    private static final AtomicInteger idGenerator = new AtomicInteger();
+
     private void setRating(Rating rating, PreparedStatement ps) throws SQLException {
-        ps.setInt(1, rating.getIdRating());
+        int nextId = idGenerator.incrementAndGet();
+        ps.setInt(1, nextId);
         ps.setInt(2, rating.getIdUser());
         ps.setString(3, rating.getIdFilm());
         ps.setInt(4, rating.getValue());
@@ -105,8 +109,9 @@ public class PostGreRatingDao extends RatingDao {
     }
 
     public Rating getRating(int idUser, String idFilm) {
-        Rating rating = new Rating();
+
         String sql = "SELECT * FROM ratings WHERE userId = ? AND filmId = ?";
+        Rating rating = null; 
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, idUser);
@@ -114,6 +119,7 @@ public class PostGreRatingDao extends RatingDao {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                rating = new Rating();
                 rating.setIdRating(rs.getInt("id"));
                 rating.setIdUser(rs.getInt("userId"));
                 rating.setIdFilm(rs.getString("filmId"));

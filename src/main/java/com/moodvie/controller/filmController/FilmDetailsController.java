@@ -119,15 +119,23 @@ public class FilmDetailsController {
 
  
  
- 
     // Ajout de la méthode pour gérer le clic sur le bouton d'ajout de commentaire
     @FXML
     public void handleAddCommentButton() {
-         String newComment = commentTextArea.getText();
-         rating.setComment(newComment);
-         ratingFacade.update(rating);
-         showAlert("Information", "Votre commentaire a bien été enregistré");
-     }
+        String newComment = commentTextArea.getText();
+
+        if (rating == null) {
+            showAlert("Erreur", "Veuillez d'abord ajouter une note avant d'ajouter un commentaire.");
+            return;
+        }
+
+        rating.setComment(newComment);
+        ratingFacade.update(rating);
+        showAlert("Information", "Votre commentaire a bien été enregistré");
+        
+        // Vous pouvez également réinitialiser le TextArea après l'ajout
+        commentTextArea.clear();
+    }
 
 
     // Ajout de la méthode pour mettre à jour la moyenne des notes

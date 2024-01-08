@@ -22,14 +22,19 @@
                 <Label fx:id="genreLabel" text="Action, Adventure" styleClass="film-info-content"/>
             </VBox>
         </HBox>
-        <Label text="Plot" styleClass="film-info-title"/>
+            <Label text="Plot" styleClass="film-info-title"/>
         <Label fx:id="plotLabel" text="Plot description goes here..." styleClass="film-info-content" wrapText="true"/>
         </VBox>
         <!-- Ajoutez d'autres éléments d'information ici -->
         <HBox alignment="BOTTOM_RIGHT">
             <Spinner fx:id="noteSpinner" min="1" max="5" initialValue="1" amountToStepBy="1" editable="false" />
             <Button fx:id="addRatingButton" text="Note" styleClass="film-info-title" onAction="#handleAddRatingButton"/>
-        <Label fx:id="ratingLabel" text="Note moyenne :"/>
-</HBox>
+
+            <TextArea fx:id="commentTextArea" promptText="Ajouter un commentaire" />
+            <Button fx:id="addCommentButton" text="Commentaire" onAction="#handleAddCommentButton"/>
+        </HBox>
     </HBox>
+
+       
+           
 </VBox>
