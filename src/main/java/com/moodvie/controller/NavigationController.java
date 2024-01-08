@@ -122,7 +122,7 @@ public class NavigationController {
      * Load the user mood view
     */
     public void loadUserMoodView() {
-        loadView("/app/MoodView/moodView.fxml");
+        loadView("/app/MoodView/moodView.fxml",null);
     }
 
 }
