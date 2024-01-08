@@ -8,6 +8,7 @@ import com.moodvie.persistance.dao.LogDao;
 
 import com.moodvie.persistance.dao.UserDao;
 import com.moodvie.persistance.dao.WatchLaterDao;
+import com.moodvie.persistance.dao.UserMoodDao;
 
 /**
  * DaoFactory est un singleton
@@ -54,4 +55,6 @@ public abstract class AbstractDaoFactory {
 
     abstract public WatchLaterDao getWatchLaterDao();
 
+    //ajout lucas
+    abstract public UserMoodDao getUserMoodDao();
 }

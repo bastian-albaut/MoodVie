@@ -34,6 +34,9 @@ public class NavBarController implements InvalidationListener {
             addTab("Profil", "loadProfilView");
             addTab("Abonnement", "loadSubscribeView");
             addTab("Mes films", "loadWatchLaterView");
+
+            addTab("Humeur", "loadUserMoodView");
+
             addTab("Log", "loadLogView");
             addTab("Déconnexion", "logout");
         } else {

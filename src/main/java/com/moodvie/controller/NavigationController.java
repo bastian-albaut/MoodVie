@@ -118,4 +118,11 @@ public class NavigationController {
             e.printStackTrace();
         }
     }
+    /**
+     * Load the user mood view
+    */
+    public void loadUserMoodView() {
+        loadView("/app/MoodView/moodView.fxml");
+    }
+
 }
