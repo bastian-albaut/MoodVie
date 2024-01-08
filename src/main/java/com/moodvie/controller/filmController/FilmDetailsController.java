@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,6 +45,9 @@ public class FilmDetailsController {
 
     @FXML   
     private Label ratingLabel; //afficher note moyenne du film
+
+    @FXML
+    private Spinner<Integer> noteSpinner;
 
     private Film film;
     private RatingFacade ratingFacade = RatingFacade.getInstance();
@@ -86,34 +90,31 @@ public class FilmDetailsController {
      public void handleAddRatingButton() {
          // Initialisez l'objet Rating
 
-         Rating rating = ratingFacade.get(userFacade.getUser().getId(), film.getId());
+         Rating existingRating = ratingFacade.get(userFacade.getUser().getId(), film.getId());
 
-         if (rating != null) {
+         System.out.println("User ID: " + userFacade.getUser().getId());
+         System.out.println("Film ID: " + film.getId());
+         System.out.println("Existing Rating: " + existingRating);
+
+         if (existingRating != null) {
              showAlert("Erreur", "Vous avez déjà noté ce film.");
              return;
          }
 
          rating = new Rating();
- 
-         try {
-             int newRatingValue = Integer.parseInt(ratingTextArea.getText());
-             if (newRatingValue < 1 || newRatingValue > 5) {
-                 showAlert("Erreur", "Veuillez entrer une note entre 1 et 5.");
-                 return;
-             }
- 
-             rating.setValue(newRatingValue);
-             rating.setIdUser(userFacade.getUser().getId());
-             rating.setIdFilm(film.getId());  // Assurez-vous d'avoir un moyen d'associer la note au film
-             ratingFacade.add(rating);
-             updateAverageRating();
-             showAlert("Information", "Votre note a bien été enregistrée");
-         } catch (NumberFormatException e) {
-             showAlert("Erreur", "Veuillez entrer une note valide (nombre entre 1 et 5).");
-         }
+
+         int selectedNote = noteSpinner.getValue();  // Obtenez la note sélectionnée du Spinner
+         
+         rating.setValue(selectedNote);
+         rating.setIdUser(userFacade.getUser().getId());
+         rating.setIdFilm(film.getId());  // Assurez-vous d'avoir un moyen d'associer la note au film
+         ratingFacade.add(rating);
+         updateAverageRating();
+         showAlert("Information", "Votre note a bien été enregistrée");
+
      }
 
-     
+
     // Mettre à jour l'interface utilisateur avec la moyenne des notes et les commentaires
 
  
