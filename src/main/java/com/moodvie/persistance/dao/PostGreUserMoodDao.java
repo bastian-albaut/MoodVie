@@ -15,9 +15,9 @@ public class PostGreUserMoodDao extends UserMoodDao {
         createTable();
     }
 
-   //on a supprimer droptable 
-
    
+
+
     private void createTable() {
         String sqlUserMood = "CREATE TABLE IF NOT EXISTS userMood ("
                 + "mood_id SERIAL PRIMARY KEY,"
