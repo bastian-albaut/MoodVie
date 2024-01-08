@@ -53,4 +53,35 @@ public class UserFacadeTest {
         assertNotNull(userAfterLogin);
         assertEquals(expectedUser, userAfterLogin);
     }
+
+    @Test
+    public void testRegister() {
+        // Mock the AbstractDaoFactory class
+        AbstractDaoFactory abstractDaoFactoryMock = mock(AbstractDaoFactory.class);
+        PowerMockito.mockStatic(AbstractDaoFactory.class);
+        when(AbstractDaoFactory.getFactory()).thenReturn(abstractDaoFactoryMock);
+
+        // Mock the UserDao class
+        UserDao userDaoMock = mock(UserDao.class);
+        when(abstractDaoFactoryMock.getUserDao()).thenReturn(userDaoMock);
+
+        // Mock the getUser method
+        String pseudo = "Doe";
+        String firstname = "John";
+        String lastname = "Doe";
+        String email = "Test";
+        String password = "Test";
+        String birthdate = "01/01/2000";
+
+        User expectedUser = new User(pseudo, firstname, lastname, birthdate, email, password);
+        when(userDaoMock.get(eq(email))).thenReturn(expectedUser);
+
+        // Test the register method
+        UserFacade userFacade = UserFacade.getInstance();
+        Boolean userAfterRegister = userFacade.register(pseudo, firstname, lastname, birthdate, email, password);
+
+        // Assertions
+        assertNotNull(userAfterRegister);
+        assertEquals(false, userAfterRegister);
+    }
 }
