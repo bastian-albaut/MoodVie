@@ -3,6 +3,7 @@ package com.moodvie.controller.filmController;
 import com.moodvie.business.facade.RatingFacade;
 import com.moodvie.persistance.model.Film;
 import com.moodvie.persistance.model.Rating;
+import com.moodvie.business.facade.UserFacade;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,13 +37,17 @@ public class FilmDetailsController {
     private Button addCommentButton;
 
     @FXML
-    private TextArea commentTextArea;
+    private TextArea ratingTextArea; //note du film
+
+    @FXML
+    private TextArea commentTextArea; //commentaire du film
 
     @FXML   
-    private Label ratingLabel;
+    private Label ratingLabel; //afficher note moyenne du film
 
     private Film film;
     private RatingFacade ratingFacade = RatingFacade.getInstance();
+    private UserFacade userFacade = UserFacade.getInstance();
     private Rating rating;
 
     // Méthode pour initialiser le contrôleur avec un film spécifique
@@ -76,15 +81,42 @@ public class FilmDetailsController {
 
     //INTERACTION AVEC LES FILMS
 
-    // Ajout de la méthode pour gérer le clic sur le bouton d'ajout de note
-    @FXML
-    public void handleAddRatingButton() {
-         int newRating = Integer.parseInt(ratingLabel.getText());
-         rating.setValue(newRating);
-         ratingFacade.update(rating);
-         updateAverageRating();  // Ajout de la mise à jour de la moyenne après l'ajout de la note
-         showAlert("Information", "Votre note a bien été enregistrée");
+     // Ajout de la méthode pour gérer le clic sur le bouton d'ajout de note
+     @FXML
+     public void handleAddRatingButton() {
+         // Initialisez l'objet Rating
+
+         Rating rating = ratingFacade.get(userFacade.getUser().getId(), film.getId());
+
+         if (rating != null) {
+             showAlert("Erreur", "Vous avez déjà noté ce film.");
+             return;
+         }
+
+         rating = new Rating();
+ 
+         try {
+             int newRatingValue = Integer.parseInt(ratingTextArea.getText());
+             if (newRatingValue < 1 || newRatingValue > 5) {
+                 showAlert("Erreur", "Veuillez entrer une note entre 1 et 5.");
+                 return;
+             }
+ 
+             rating.setValue(newRatingValue);
+             rating.setIdUser(userFacade.getUser().getId());
+             rating.setIdFilm(film.getId());  // Assurez-vous d'avoir un moyen d'associer la note au film
+             ratingFacade.add(rating);
+             updateAverageRating();
+             showAlert("Information", "Votre note a bien été enregistrée");
+         } catch (NumberFormatException e) {
+             showAlert("Erreur", "Veuillez entrer une note valide (nombre entre 1 et 5).");
+         }
      }
+
+     
+    // Mettre à jour l'interface utilisateur avec la moyenne des notes et les commentaires
+
+ 
  
  
     // Ajout de la méthode pour gérer le clic sur le bouton d'ajout de commentaire
@@ -102,7 +134,6 @@ public class FilmDetailsController {
         double average = ratingFacade.getAverageRating(film.getId());
         displayAverageRating(average);
     }
-
 
     // Méthode pour afficher la moyenne des notes
     private void displayAverageRating(double average) {

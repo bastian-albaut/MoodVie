@@ -14,6 +14,7 @@ public class PostGreRatingDao extends RatingDao {
     private final Connection connection = DatabaseConnection.getInstance().getConnection();
 
     public PostGreRatingDao() {
+        dropTable();
         createTable();
     }
 
@@ -21,7 +22,7 @@ public class PostGreRatingDao extends RatingDao {
      * Cette méthode supprime la table ratings de la base de données et toutes les tables qui en dépendent
      */
     private void dropTable() {
-        String sql = "DROP TABLE IF EXISTS subscribes CASCADE";
+        String sql = "DROP TABLE IF EXISTS ratings CASCADE";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
@@ -36,10 +37,9 @@ public class PostGreRatingDao extends RatingDao {
         String sql = "CREATE TABLE IF NOT EXISTS ratings (" +
                 "id SERIAL PRIMARY KEY, " +
                 "userId INTEGER, " +
-                "filmId INTEGER, " +
+                "filmId VARCHAR(100)," +
                 "value INTEGER, " +
                 "comment VARCHAR(100), " +
-                "FOREIGN KEY (filmId) REFERENCES films(id)," +
                 "FOREIGN KEY (userId) REFERENCES users(id)" +
                 ")";
         try (Statement stmt = connection.createStatement()) {
