@@ -15,24 +15,6 @@ public class PostGreUserMoodDao extends UserMoodDao {
         createTable();
     }
 
-private void dropTableUserMood() {
-    String sql = "DROP TABLE IF EXISTS userMood CASCADE";
-    try (Statement stmt = connection.createStatement()) {
-        stmt.execute(sql);
-    } catch (SQLException e) {
-        throw new RuntimeException("Erreur lors de la suppression de la table userMood : " + e.getMessage(), e);
-    }
-}
-
-private void dropTableUserMoodFilm() {
-    String sql = "DROP TABLE IF EXISTS userMoodFilms";
-    try (Statement stmt = connection.createStatement()) {
-        stmt.execute(sql);
-    } catch (SQLException e) {
-        throw new RuntimeException("Erreur lors de la suppression de la table userMoodFilms : " + e.getMessage(), e);
-    }
-}
-
    
     private void createTable() {
         String sqlUserMood = "CREATE TABLE IF NOT EXISTS userMood ("
