@@ -51,7 +51,13 @@ public class UserFacadeTest {
 
         // Assertions
         assertNotNull(userAfterLogin);
-        assertEquals(expectedUser, userAfterLogin);
+        assertEquals(expectedUser.getId(), userAfterLogin.getId());
+        assertEquals(expectedUser.getPseudo(), userAfterLogin.getPseudo());
+        assertEquals(expectedUser.getFirstname(), userAfterLogin.getFirstname());
+        assertEquals(expectedUser.getLastname(), userAfterLogin.getLastname());
+        assertEquals(expectedUser.getBirthday(), userAfterLogin.getBirthday());
+        assertEquals(expectedUser.getEmail(), userAfterLogin.getEmail());
+        assertEquals(expectedUser.getPassword(), userAfterLogin.getPassword());
     }
 
     @Test
