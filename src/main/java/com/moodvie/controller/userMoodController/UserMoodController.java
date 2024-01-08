@@ -1,5 +1,6 @@
 package com.moodvie.controller.userMoodController;
 
+import com.moodvie.business.facade.LogFacade;
 import com.moodvie.business.facade.UserMoodFacade;
 import com.moodvie.business.facade.UserFacade;
 import com.moodvie.persistance.model.UserMood;
@@ -21,6 +22,8 @@ public class UserMoodController {
     private final UserMoodFacade userMoodFacade = UserMoodFacade.getInstance();
 
     private final UserFacade userFacade = UserFacade.getInstance();
+
+    private final LogFacade logFacade = LogFacade.getInstance();
 
     @FXML
     private TextField moodDescriptionField;
@@ -54,6 +57,7 @@ public class UserMoodController {
         userMood.addAssociatedFilmID(associatedFilmID);
     
         userMoodFacade.addUserMood(userMood);
+        logFacade.add(new com.moodvie.persistance.model.Log("Ajout d'une humeur", "Ajout d'une humeur réussie", userFacade.getUser().getPseudo()));
         displayUserMoods();
     }
 
@@ -88,6 +92,7 @@ public class UserMoodController {
     }
     private void handleDeleteMoodAction(UserMood mood) {
         userMoodFacade.deleteUserMood(mood.getMoodID());
+        logFacade.add(new com.moodvie.persistance.model.Log("Suppression d'une humeur", "Suppression d'une humeur réussie", userFacade.getUser().getPseudo()));
         displayUserMoods();
     }
     
@@ -135,6 +140,7 @@ private void handleAssociateFilmAction() {
         System.out.println("Films associés à l'humeur '" + moodDescription + "': ");
         userMood.getAssociatedFilmIDs().forEach(filmId -> {
             Film filmDetails = filmDao.get(filmId); // Utilisez la méthode get de OMDbApiFilmDao
+            logFacade.add(new com.moodvie.persistance.model.Log("Ajout d'une humeur", "Ajout d'une humeur réussie", userFacade.getUser().getPseudo()));
             if (filmDetails != null) {
                 System.out.println(filmDetails.getTitle());
             } else {
@@ -153,6 +159,7 @@ private void handleAssociateFilmAction() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText("Impossible d'associer le film");
+        logFacade.add(new com.moodvie.persistance.model.Log("Ajout d'une humeur", "Ajout d'une humeur échouée", userFacade.getUser().getPseudo()));
 
         if (selectedFilm == null) {
             alert.setContentText("Veuillez sélectionner un film.");

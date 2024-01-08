@@ -1,6 +1,7 @@
 package com.moodvie.controller.userController;
 
 
+import com.moodvie.business.facade.LogFacade;
 import com.moodvie.business.facade.UserFacade;
 import com.moodvie.controller.NavigationController;
 import com.moodvie.persistance.model.User;
@@ -23,6 +24,8 @@ public class LoginController {
 
     private final UserFacade userFacade = UserFacade.getInstance();
 
+    private final LogFacade logFacade = LogFacade.getInstance();
+
     @FXML
     private void handleLoginAction() {
         String email = usernameField.getText();
@@ -31,6 +34,7 @@ public class LoginController {
         User user = userFacade.login(email, password);
         if (user != null) {
             // Afficher un message de succès
+            logFacade.add(new com.moodvie.persistance.model.Log("Connexion", "Connexion réussie", user.getPseudo()));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Connexion Réussie");
             alert.setHeaderText(null);
@@ -40,6 +44,7 @@ public class LoginController {
             // Rediriger vers une autre page si nécessaire
         } else {
             // Afficher un message d'erreur
+            logFacade.add(new com.moodvie.persistance.model.Log("Connexion", "Connexion échouée", email));
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Échec de la Connexion");
             errorAlert.setHeaderText(null);
@@ -59,6 +64,7 @@ public class LoginController {
 
     public void handleShowForgotPasswordView() {
        //Afficher une alerte
+        logFacade.add(new com.moodvie.persistance.model.Log("Mot de passe oublié", "Mot de passe oublié", "Mot de passe oublié"));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mot de passe oublié");
         alert.setHeaderText(null);

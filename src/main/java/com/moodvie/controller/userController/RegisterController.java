@@ -1,5 +1,6 @@
 package com.moodvie.controller.userController;
 
+import com.moodvie.business.facade.LogFacade;
 import com.moodvie.business.facade.UserFacade;
 import com.moodvie.controller.NavigationController;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import java.util.Date;
 public class RegisterController {
 
     private final UserFacade userFacade = UserFacade.getInstance();
+
+    private final LogFacade logFacade = LogFacade.getInstance();
 
     @FXML
 
@@ -93,6 +96,7 @@ public class RegisterController {
 
         if (success) {
             // Afficher un message de succès
+            logFacade.add(new com.moodvie.persistance.model.Log("Inscription", "Inscription réussie", pseudo));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inscription Réussie");
             alert.setHeaderText(null);
@@ -102,6 +106,7 @@ public class RegisterController {
             // Rediriger vers une autre page si nécessaire
         } else {
             // Afficher un message d'erreur
+            logFacade.add(new com.moodvie.persistance.model.Log("Inscription", "Inscription échouée", email));
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Échec de l'inscription");
             errorAlert.setHeaderText(null);
