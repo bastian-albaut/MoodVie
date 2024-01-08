@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import com.moodvie.persistance.dao.OMDbApiFilmDao;
 import com.moodvie.persistance.model.Film;
 import java.util.Collections;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 
 
@@ -139,6 +141,13 @@ private void handleAssociateFilmAction() {
                 System.out.println("Film ID: " + filmId + " n'a pas pu être récupéré.");
             }
         });
+
+        // Afficher la notification de confirmation
+        Alert confirmationAlert = new Alert(AlertType.INFORMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Le film a été associé à l'émotion avec succès!");
+        confirmationAlert.showAndWait();
     } else {
         // Afficher un message d'erreur
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -154,6 +163,7 @@ private void handleAssociateFilmAction() {
         alert.showAndWait();
     }
 }
+
 
 
 // Ajoutez ou mettez à jour la méthode dans UserMoodFacade pour gérer l'ajout ou la mise à jour d'un mood
