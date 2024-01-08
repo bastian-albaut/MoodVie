@@ -10,6 +10,7 @@ public abstract class RatingDao {
     public abstract Rating getRating(int idUser, String idFilm);
     //public abstract List<Rating> getAll(int userId);
     public abstract void update(Rating rating);
+    public abstract void updateComment(Rating rating);
     public abstract void delete(int ratingId);
 
 

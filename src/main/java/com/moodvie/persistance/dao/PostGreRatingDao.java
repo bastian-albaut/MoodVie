@@ -168,6 +168,18 @@ public class PostGreRatingDao extends RatingDao {
         }
     }
 
+    @Override
+    public void updateComment(Rating rating) throws RuntimeException{
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE ratings SET comment = ? WHERE id = ?");
+            ps.setString(1, rating.getComment());
+            ps.setInt(2, rating.getIdRating());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
      /**
      * Cette méthode supprime une note de la base de données
      * @param idRating l'identifiant de la note à supprimer

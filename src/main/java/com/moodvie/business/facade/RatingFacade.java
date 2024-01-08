@@ -48,6 +48,11 @@ public class RatingFacade {
         abstractDaoFactory.getRatingDao().update(rating);
     }
 
+    public void updateComment(Rating rating) {
+        abstractDaoFactory.getRatingDao().updateComment(rating);
+    }
+
+
     // Méthode pour supprimer une note (Rating) en fonction de l'ID de la note
     public void delete(int idRating) {
         abstractDaoFactory.getRatingDao().delete(idRating);

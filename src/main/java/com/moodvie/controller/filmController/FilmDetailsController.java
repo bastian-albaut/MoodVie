@@ -4,6 +4,9 @@ import com.moodvie.business.facade.RatingFacade;
 import com.moodvie.persistance.model.Film;
 import com.moodvie.persistance.model.Rating;
 import com.moodvie.business.facade.UserFacade;
+import com.moodvie.business.facade.WatchLaterFacade;
+import com.moodvie.persistance.model.User;
+import com.moodvie.persistance.model.WatchLater;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,26 +41,31 @@ public class FilmDetailsController {
     private Button addCommentButton;
 
     @FXML
-    private TextArea ratingTextArea; //note du film
+    private Button addToWatchLaterButton;
 
     @FXML
     private TextArea commentTextArea; //commentaire du film
 
     @FXML   
-    private Label ratingLabel; //afficher note moyenne du film
+    private Label averageRatingLabel; //afficher note moyenne du film
 
     @FXML
     private Spinner<Integer> noteSpinner;
 
+    @FXML
+    private Label commentsLabel; //afficher les commentaires du film
+
     private Film film;
     private RatingFacade ratingFacade = RatingFacade.getInstance();
     private UserFacade userFacade = UserFacade.getInstance();
+    private WatchLaterFacade watchLaterFacade = WatchLaterFacade.getInstance();
     private Rating rating;
 
     // Méthode pour initialiser le contrôleur avec un film spécifique
     public void setFilm(Film film) {
         this.film = film;
         updateFilmDetails();
+        updateWatchLaterButton();
     }
 
     // Mettre à jour l'interface utilisateur avec les détails du film
@@ -79,6 +87,11 @@ public class FilmDetailsController {
     }
 
     public void onAddToWatchlist(ActionEvent actionEvent) {
+        addFilmToWatchLater(film);
+    }
+
+    public void onRemoveFromWatchlist(ActionEvent actionEvent){
+        removeFilmFromWatchLater(film);
     }
 
 
@@ -115,10 +128,6 @@ public class FilmDetailsController {
      }
 
 
-    // Mettre à jour l'interface utilisateur avec la moyenne des notes et les commentaires
-
- 
- 
     // Ajout de la méthode pour gérer le clic sur le bouton d'ajout de commentaire
     @FXML
     public void handleAddCommentButton() {
@@ -130,7 +139,8 @@ public class FilmDetailsController {
         }
 
         rating.setComment(newComment);
-        ratingFacade.update(rating);
+        ratingFacade.updateComment(rating);
+        displayComments();
         showAlert("Information", "Votre commentaire a bien été enregistré");
         
         // Vous pouvez également réinitialiser le TextArea après l'ajout
@@ -146,14 +156,15 @@ public class FilmDetailsController {
 
     // Méthode pour afficher la moyenne des notes
     private void displayAverageRating(double average) {
-        // À implémenter selon votre logique d'affichage (peut-être mettre à jour une étiquette ou un autre élément visuel)
-        System.out.println("Moyenne des notes : " + average);
+        averageRatingLabel.setText(String.valueOf(average));
     }
 
     // Méthode pour afficher les commentaires
-    private void displayComments(String comments) {
-        System.out.println("Commentaires : " + comments);
-    }
+    @FXML
+    private void displayComments() {
+        String comments = ratingFacade.getComments(film.getId());
+        commentsLabel.setText(comments);
+    }   
 
 
       // Method to show an alert with the given title and content
@@ -164,5 +175,42 @@ public class FilmDetailsController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    private void addFilmToWatchLater(Film film) {
+        User currentUser = userFacade.getUser();
+
+        if (currentUser != null) {
+            watchLaterFacade.add(new WatchLater(currentUser.getId(), film.getImdbID()));
+            System.out.println("Le film a été ajouté à la liste");
+        }else {
+            System.out.println("Erreur : Aucun utilisateur connecté.");
+        }
+    }
+
+    private void removeFilmFromWatchLater(Film film) {
+        User currentUser = userFacade.getUser();
+
+        if (currentUser != null) {
+            WatchLater watchLater = watchLaterFacade.get(film.getImdbID(), currentUser.getId());
+
+            if (watchLater != null && watchLater.getIdFilm() != null) {
+                watchLaterFacade.delete(watchLater.getIdWatchLater());
+                System.out.println("Le film a été retiré de la liste");
+            }
+        } else {
+            System.out.println("Erreur : Aucun utilisateur connecté.");
+        }
+    }
+
+   private void updateWatchLaterButton() {
+    WatchLater watchLater = watchLaterFacade.get(film.getImdbID(), userFacade.getUser().getId());
+    if (watchLater != null) {
+        addToWatchLaterButton.setText("Retirer de la liste");
+        addToWatchLaterButton.setOnAction(this::onRemoveFromWatchlist);
+    } else {
+        addToWatchLaterButton.setText("Ajouter à la liste");
+        addToWatchLaterButton.setOnAction(this::onAddToWatchlist);
+    }
+}
 
 }
