@@ -132,7 +132,7 @@ public class SubscribeController {
         int typeOfSubscribeId = typeOfSubscribe.getId();
 
         // If the current subscribe is the same as the type of subscribe, display a message
-        if ((currentLabel != null && !currentLabel.equals("")) || currentLabel.equals(label)) {
+        if (currentLabel.equals(label)) {
             Label actionLabel = new Label("Déjà possédé");
             actionBox.getChildren().add(actionLabel);
         } else {
