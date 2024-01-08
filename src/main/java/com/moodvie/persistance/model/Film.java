@@ -25,6 +25,10 @@ public class Film {
     public Film() {
     }
 
+    public String getId() {
+        return imdbID;
+    }
+
     public String getTitle() {
         return Title;
     }
