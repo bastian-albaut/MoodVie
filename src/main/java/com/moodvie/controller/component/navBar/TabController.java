@@ -37,6 +37,8 @@ public class TabController {
             NavigationController.getInstance().loadRegisterView();
         }else if (actionCommand.get().equals("logout")) {
             NavigationController.getInstance().handleDisconnect();
+        } else if (actionCommand.get().equals("loadSubscribeView")) {
+            NavigationController.getInstance().loadSubscribeView();
         }else if (actionCommand.get().equals("loadHomeView")) {
             NavigationController.getInstance().loadFilmView();
         }else if (actionCommand.get().equals("loadFilmSearchView")) {
@@ -46,8 +48,10 @@ public class TabController {
         } else if (actionCommand.get().equals("loadLogView")) {
             NavigationController.getInstance().loadLogPageView();
         } else if (actionCommand.get().equals("loadUserMoodView")) { 
-    NavigationController.getInstance().loadUserMoodView();
-}
+            NavigationController.getInstance().loadUserMoodView();
+        } else {
+            System.out.println("Unknown action command: " + actionCommand.get());
+        }
     }
 
     // Méthodes pour définir les propriétés

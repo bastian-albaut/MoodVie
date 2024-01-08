@@ -35,35 +35,35 @@ public class NavigationController {
      * Load the login view
      */
     public void loadLoginView() {
-        loadView("/app/login-view.fxml");
+        loadView("/app/login-view.fxml", null);
     }
 
     /**
      * Load the profil view
      */
     public void loadProfilView() {
-        loadView("/app/profilView/profil-view.fxml");
+        loadView("/app/profilView/profil-view.fxml", null);
     }
 
     /**
      * Load the register view
      */
     public void loadRegisterView() {
-        loadView("/app/register-view.fxml");
+        loadView("/app/register-view.fxml", null);
     }
 
     /**
      * Load the log page view
      */
     public void loadLogPageView() {
-        loadView("/app/logView/log-view.fxml");
+        loadView("/app/logView/log-view.fxml", null);
     }
 
     /**
      * Load the film view
      */
     public void loadFilmView() {
-        loadView("/app/filmView/searchFilms-view.fxml");
+        loadView("/app/filmView/searchFilms-view.fxml", null);
     }
 
     public void loadFilmDetailView(Film film) {
@@ -82,7 +82,7 @@ public class NavigationController {
     }
 
     public void loadWatchLaterView() {
-        loadView("/app/watchLaterView/watchLater-view.fxml");
+        loadView("/app/watchLaterView/watchLater-view.fxml",null);
     }
 
     /**
@@ -94,11 +94,25 @@ public class NavigationController {
     }
 
     /**
+     * Load the subscribe view
+     */
+    public void loadSubscribeView() {
+        loadView("/app/subscribeView/subscribe-view.fxml", "/app/subscribeView/style-subscribe.css");
+    }
+
+    /**
      * Load the view with the given fxmlPath
      */
-    public void loadView(String fxmlPath) {
+    public void loadView(String fxmlPath, String cssPath) {
         try {
             Parent view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+
+            // Load the CSS if needed
+            if (cssPath != null && !cssPath.isEmpty()) {
+                String css = getClass().getResource(cssPath).toExternalForm();
+                view.getStylesheets().add(css);
+            }
+
             mainContentArea.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();

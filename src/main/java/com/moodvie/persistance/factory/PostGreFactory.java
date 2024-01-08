@@ -9,6 +9,8 @@ import com.moodvie.persistance.dao.*;
 
 public class PostGreFactory extends AbstractDaoFactory {
     UserDao userDao;
+    SubscribeDao subscribeDao;
+    TypeOfSubscribeDao typeOfSubscribeDao;
 
     LogDao logDao;
 
@@ -25,6 +27,24 @@ public class PostGreFactory extends AbstractDaoFactory {
             userDao = new PostGreUserDao();
         }
         return userDao;
+    }
+    
+    @Override
+    public SubscribeDao getSubscribeDao() {
+        // retourne une implémentation de persistance.dao.SubscribeDao spécifique à SQL
+        if (subscribeDao == null) {
+            subscribeDao = new PostGreSubscribeDao();
+        }
+        return subscribeDao;
+    }
+
+    @Override
+    public TypeOfSubscribeDao getTypeOfSubscribeDao() {
+        // retourne une implémentation de persistance.dao.TypeOfSubscribeDao spécifique à SQL
+        if(typeOfSubscribeDao == null) {
+            typeOfSubscribeDao = new PostGreTypeOfSubscribeDao();
+        }
+        return typeOfSubscribeDao;
     }
     public LogDao getLogDao() {
         // retourne une implémentation de persistance.dao.LogDao spécifique à SQL
@@ -47,7 +67,6 @@ public class PostGreFactory extends AbstractDaoFactory {
         }
         return watchLaterDao;
     }
-
 
     @Override
     public UserMoodDao getUserMoodDao() {
