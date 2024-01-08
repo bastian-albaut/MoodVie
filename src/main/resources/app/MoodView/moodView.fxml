@@ -1,31 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.userMoodController.UserMoodController" stylesheets="@moodView.css">
-    <!-- Zone de texte pour entrer la nouvelle humeur -->
-    <TextField fx:id="moodDescriptionField" promptText="Comment vous sentez-vous?"/>
-
-    <!-- Bouton pour ajouter une nouvelle humeur -->
-    <Button fx:id="addMoodButton" text="Ajouter Humeur" onAction="#handleAddMoodAction"/>
-
-    <!-- Champ de recherche de film -->
-    <TextField fx:id="filmSearchField" promptText="Recherchez un film..."/>
-
-    <!-- Bouton pour déclencher la recherche -->
-    <Button text="Rechercher" onAction="#handleSearchFilmAction"/>
-
-    <!-- ComboBox pour afficher les films trouvés -->
-    <ComboBox fx:id="filmComboBox" promptText="Sélectionnez un film"/>
-
-    <!-- Bouton pour associer le film sélectionné à l'humeur -->
-    <Button fx:id="associateFilmButton" text="Associer Film" onAction="#handleAssociateFilmAction"/>
-
-    <!-- VBox pour afficher les moods existants -->
-    <VBox fx:id="moodsVBox">
-        <!-- Les humeurs seront ajoutées ici par le contrôleur -->
-    </VBox>
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.moodvie.controller.userMoodController.UserMoodController" stylesheets="@moodView.css">
+   
+    <left>
+       <VBox style="-fx-background-color: #FDF1B8;" alignment="CENTER" spacing="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <ImageView fitHeight="107.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../picture/46894.png"/>
+    </ImageView>
+    <Label text="Moodvie">
+        <font>
+            <Font name="Didot Bold" size="36"/>
+        </font>
+    </Label>
+    <Label text="Your emotions, your cinema">
+        <font>
+            <Font name="Didot Bold" size="14"/>
+        </font>
+    </Label>
+    <Label text="Discover your perfect movie">
+        <font>
+            <Font name="Didot Bold" size="12"/>
+        </font>
+    </Label>
+    <Label text="Copyright(c). All Rights Reserved">
+        <font>
+            <Font name="Didot Bold" size="10"/>
+        </font>
+    </Label>
 </VBox>
+
+    </left>
+    <center>
+    
+        <VBox spacing="10"> <!-- Ajustez l'espacement selon vos besoins -->
+            <!-- Zone de texte pour entrer la nouvelle humeur -->
+            <TextField fx:id="moodDescriptionField" promptText="Comment vous sentez-vous?" />
+
+            <!-- Bouton pour ajouter une nouvelle humeur -->
+            <Button fx:id="addMoodButton" onAction="#handleAddMoodAction" text="Ajouter Humeur" />
+
+            <!-- Champ de recherche de film -->
+            <TextField fx:id="filmSearchField" promptText="Recherchez un film..." />
+
+            <!-- Bouton pour déclencher la recherche -->
+            <Button onAction="#handleSearchFilmAction" text="Rechercher" />
+            
+            <!-- ComboBox pour afficher les films trouvés -->
+            <ComboBox fx:id="filmComboBox" promptText="Sélectionnez un film" />
+
+            <!-- Bouton pour associer le film sélectionné à l'humeur -->
+            <Button fx:id="associateFilmButton" onAction="#handleAssociateFilmAction" text="Associer Film" />
+
+            <!-- VBox pour afficher les moods existants -->
+            <VBox fx:id="moodsVBox">
+                <!-- Les humeurs seront ajoutées ici par le contrôleur -->
+            </VBox>
+        </VBox>
+    </center>
+   <right>
+    <VBox alignment="CENTER" style="-fx-background-color: #FDF1B8;" prefWidth="103" minWidth="103" maxWidth="103">
+        <ImageView fitHeight="107" fitWidth="103" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../picture/theatre.png"/>
+        </ImageView>
+    </VBox>
+</right>
+     <bottom>
+        <!-- Barre de bas de page vide -->
+        <HBox prefHeight="50" style="-fx-background-color: #FDF1B8;"> <!-- Ajustez la hauteur et la couleur de fond comme vous le souhaitez -->
+            <!-- Aucun contenu ici -->
+        </HBox>
+    </bottom>
+</BorderPane>
