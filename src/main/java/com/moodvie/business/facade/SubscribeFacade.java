@@ -27,7 +27,7 @@ public class SubscribeFacade {
         return instance;
     } 
     /**
-     * Cette méthode permet de créer un abonnement, elle doit être appelé à la suite de la création d'un utilisateur
+     * Cette méthode permet de créer un abonnement, elle doit être appelé  à la suite de la création d'un utilisateur
      * 
      * @param startDate date de début de l'abonnement
      * @param isActive true si l'abonnement est actif, false sinon
