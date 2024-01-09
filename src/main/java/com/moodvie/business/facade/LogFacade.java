@@ -4,8 +4,6 @@ import com.moodvie.persistance.dao.LogDao;
 import com.moodvie.persistance.factory.AbstractDaoFactory;
 import com.moodvie.persistance.model.Log;
 
-import java.util.ArrayList;
-
 public class LogFacade {
     private final AbstractDaoFactory abstractDaoFactory;
 

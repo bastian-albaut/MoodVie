@@ -24,10 +24,21 @@ public class FilmFacade {
         this.abstractDaoFactory = AbstractDaoFactory.getFactory();
     }
 
+    /**
+     * Get all films
+     * @return List of films
+     */
+
     public List<Film> searchFilms(String title) {
         FilmDao filmDao = abstractDaoFactory.getFilmDao();
         return filmDao.searchFilm(title);
     }
+
+    /**
+     * Get a film by its ID
+     * @param id ID of the film
+     * @return Film
+     */
 
     public Film getFilm(String id) {
         FilmDao filmDao = abstractDaoFactory.getFilmDao();

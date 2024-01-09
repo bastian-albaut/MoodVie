@@ -21,12 +21,16 @@ public class Film {
     private String Actors;
 
 
-
     public Film() {
     }
 
+
     public String getId() {
         return imdbID;
+
+    public void setTitle(String Title) {
+        this.Title = Title;
+
     }
 
     public String getTitle() {
@@ -55,5 +59,10 @@ public class Film {
 
     public String getGenre() {
         return Genre;
+    }
+   
+    public String toString() {
+        // Cette méthode est utilisée par la ComboBox pour afficher le texte du film
+        return Title; // ou tout autre format que vous préférez
     }
 }

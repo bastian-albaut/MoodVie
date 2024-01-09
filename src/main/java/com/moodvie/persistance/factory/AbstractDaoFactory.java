@@ -10,6 +10,8 @@ import com.moodvie.persistance.dao.UserDao;
 import com.moodvie.persistance.dao.WatchLaterDao;
 import com.moodvie.persistance.dao.RatingDao;
 
+import com.moodvie.persistance.dao.UserMoodDao;
+
 /**
  * DaoFactory est un singleton
  * Permet de gérer les DAO
@@ -60,5 +62,9 @@ public abstract class AbstractDaoFactory {
      * @return une instance de RatingDao
      */
     abstract public RatingDao getRatingDao();
+
+
+    //ajout lucas
+    abstract public UserMoodDao getUserMoodDao();
 
 }

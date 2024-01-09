@@ -47,6 +47,8 @@ public class TabController {
             NavigationController.getInstance().loadWatchLaterView();
         } else if (actionCommand.get().equals("loadLogView")) {
             NavigationController.getInstance().loadLogPageView();
+        } else if (actionCommand.get().equals("loadUserMoodView")) { 
+            NavigationController.getInstance().loadUserMoodView();
         } else {
             System.out.println("Unknown action command: " + actionCommand.get());
         }

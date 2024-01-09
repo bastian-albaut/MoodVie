@@ -18,7 +18,14 @@ public class PostGreFactory extends AbstractDaoFactory {
 
     WatchLaterDao watchLaterDao;
 
+
+  
     RatingDao ratingDao;
+
+  
+    UserMoodDao userMoodDao;
+
+  
 
     @Override
     public UserDao getUserDao() {
@@ -68,6 +75,8 @@ public class PostGreFactory extends AbstractDaoFactory {
         return watchLaterDao;
     }
 
+  
+
     public RatingDao getRatingDao(){
         if (ratingDao == null) {
             ratingDao = new PostGreRatingDao();
@@ -77,4 +86,16 @@ public class PostGreFactory extends AbstractDaoFactory {
 
     // implémentations pour d'autres DAO si nécessaire
 
+  
+  
+
+    @Override
+    public UserMoodDao getUserMoodDao() {
+        if (userMoodDao == null) {
+            userMoodDao = new PostGreUserMoodDao(); // Crée une instance de PostGreUserMoodDao
+        }
+        return userMoodDao; // Retourne UserMoodDao
+    }
+  // implémentations pour d'autres DAO si nécessaire
+    
 }
