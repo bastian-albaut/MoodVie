@@ -12,6 +12,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import com.moodvie.persistance.model.UserMood;
+import com.moodvie.business.facade.UserMoodFacade;
+import javafx.scene.image.Image;
+
 
 import java.util.List;
 
@@ -23,6 +27,9 @@ public class FilmSearchController {
 
     UserFacade userFacade = UserFacade.getInstance();
 
+    UserMoodFacade userMoodFacade = UserMoodFacade.getInstance();
+
+
     @FXML
     private TextField searchField;
 
@@ -31,6 +38,11 @@ public class FilmSearchController {
 
     @FXML
     private FlowPane filmsFlowPane;
+
+    @FXML
+    private ComboBox<UserMood> moodComboBox;
+
+    
 
     public void onSearch() {
         // Logique pour rechercher des films et les afficher
@@ -101,19 +113,20 @@ public class FilmSearchController {
         VBox card = new VBox(10);
         card.setPrefSize(200, 300); // Taille préférée de la carte
         card.getStyleClass().add("film-card");
+        
         ImageView poster;
-        try {
-            poster = new ImageView(film.getPoster());
-            poster.setFitWidth(180); // Largeur de l'image
-            poster.setFitHeight(250); // Hauteur de l'image
-            poster.setPreserveRatio(true);
-        } catch (IllegalArgumentException e) {
-            // Log l'erreur et/ou utilisez une image par défaut
-            poster = new ImageView("https://via.placeholder.com/300x450.png?text=No+poster+available");
-            poster.setFitWidth(180); // Largeur de l'image
-            poster.setFitHeight(250); // Hauteur de l'image
-            poster.setPreserveRatio(true);
+        String posterUrl = film.getPoster();
+        if (posterUrl == null || posterUrl.trim().isEmpty() || posterUrl.equals("N/A")) {
+            // Utilisez une image par défaut si l'URL du poster est null ou "N/A"
+            poster = new ImageView(new Image("https://via.placeholder.com/300x450.png?text=No+poster+available"));
+        } else {
+            // Sinon, utilisez l'URL du poster pour créer l'ImageView
+            poster = new ImageView(new Image(posterUrl));
         }
+        poster.setFitWidth(180); // Largeur de l'image
+        poster.setFitHeight(250); // Hauteur de l'image
+        poster.setPreserveRatio(true);
+        
         Label title = new Label(film.getTitle());
         title.getStyleClass().add("film-title");
 
@@ -132,4 +145,37 @@ public class FilmSearchController {
         card.setOnMouseClicked(event -> NavigationController.getInstance().loadFilmDetailView(filmFacade.getFilm(film.getImdbID())));;
         return card;
     }
+
+    @FXML
+    private void initialize() {
+        List<UserMood> moods = userMoodFacade.getAllUserMoods();
+        moodComboBox.getItems().addAll(moods);
+        moodComboBox.setCellFactory((listView) -> new ListCell<UserMood>() {
+            @Override
+            protected void updateItem(UserMood mood, boolean empty) {
+                super.updateItem(mood, empty);
+                setText(empty ? null : mood.getMoodDescription());
+            }
+        });
+        moodComboBox.setButtonCell(new ListCell<UserMood>() {
+            @Override
+            protected void updateItem(UserMood mood, boolean empty) {
+                super.updateItem(mood, empty);
+                setText(empty ? null : mood.getMoodDescription());
+            }
+        });
+    
+        // Ajoutez un écouteur de changement pour le ComboBox des humeurs
+        moodComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Appel de la méthode pour afficher les films associés à l'humeur sélectionnée
+                List<Film> films = userMoodFacade.getFilmsByMood(newValue); // Cette méthode doit être implémentée dans UserMoodFacade
+                displayFilms(films);
+            }
+        });
+    }
+    
 }
+
+
+
