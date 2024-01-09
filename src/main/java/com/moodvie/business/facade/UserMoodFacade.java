@@ -5,6 +5,10 @@ import com.moodvie.persistance.dao.UserMoodDao;
 import com.moodvie.persistance.factory.AbstractDaoFactory;
 import com.moodvie.persistance.model.UserMood;
 
+import com.moodvie.persistance.dao.OMDbApiFilmDao;
+import com.moodvie.persistance.model.Film;
+
+
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -100,6 +104,23 @@ public boolean deleteUserMood(Integer moodID) {
         }
     }
     
+    public List<Film> getFilmsByMood(UserMood userMood) {
+        // Créez une instance de votre OMDbApiFilmDao pour récupérer les films
+        OMDbApiFilmDao filmDao = new OMDbApiFilmDao();
+        List<Film> films = new ArrayList<>();
+    
+        // Supposons que UserMood a une méthode getAssociatedFilmIDs qui retourne une liste d'ID de films
+        for (String filmId : userMood.getAssociatedFilmIDs()) {
+            Film film = filmDao.get(filmId);
+            if (film != null) {
+                films.add(film);
+            }
+        }
+    
+        return films;
+    }
+
+
     // Autres méthodes nécessaires pour gérer UserMood
     // ...
 
