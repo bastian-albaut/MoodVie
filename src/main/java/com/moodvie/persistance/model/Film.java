@@ -24,8 +24,13 @@ public class Film {
     public Film() {
     }
 
+
+    public String getId() {
+        return imdbID;
+
     public void setTitle(String Title) {
         this.Title = Title;
+
     }
 
     public String getTitle() {

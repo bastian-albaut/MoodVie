@@ -7,7 +7,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moodvie.controller.filmController.FilmDetailsController" stylesheets="@style.css" styleClass="film-details-container">
     <HBox alignment="CENTER">
         <Button fx:id="backButton" text="Retour" onAction="#onBack"/>
-        <Button fx:id="addToWatchlistButton" text="Ajouter à la liste" onAction="#onAddToWatchlist"/>
+        <Button fx:id="addToWatchLaterButton" text="Ajouter à la liste" onAction="#onAddToWatchlist"/>
         <ImageView fx:id="posterImageView" fitWidth="300" fitHeight="450" preserveRatio="true" styleClass="film-poster"/>
         <VBox>
 
@@ -22,9 +22,34 @@
                 <Label fx:id="genreLabel" text="Action, Adventure" styleClass="film-info-content"/>
             </VBox>
         </HBox>
-        <Label text="Plot" styleClass="film-info-title"/>
+            <Label text="Plot" styleClass="film-info-title"/>
         <Label fx:id="plotLabel" text="Plot description goes here..." styleClass="film-info-content" wrapText="true"/>
+
+         <!-- Section for adding a rating -->
+        <VBox spacing="10">
+            <HBox spacing="10">
+                <Spinner fx:id="noteSpinner" min="1" max="5" initialValue="1" amountToStepBy="1" editable="false" />
+                <Button fx:id="addRatingButton" text="Ajouter une note" styleClass="film-info-title" onAction="#handleAddRatingButton"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Note moyenne" styleClass="film-info-title"/>
+                <Label fx:id="averageRatingLabel" text="0" styleClass="film-info-content"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextArea fx:id="commentTextArea" promptText="Saisissez votre commentaire ici" prefHeight="50" maxWidth="200" />
+                <Button fx:id="addCommentButton" text="Ajouter un commentaire" styleClass="film-info-title" onAction="#handleAddCommentButton"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label fx:id="commentsLabel" />
+            </HBox>
         </VBox>
-        <!-- Ajoutez d'autres éléments d'information ici -->
+</VBox>
+    
     </HBox>
+
+       
+           
 </VBox>

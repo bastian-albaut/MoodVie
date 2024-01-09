@@ -8,6 +8,8 @@ import com.moodvie.persistance.dao.LogDao;
 
 import com.moodvie.persistance.dao.UserDao;
 import com.moodvie.persistance.dao.WatchLaterDao;
+import com.moodvie.persistance.dao.RatingDao;
+
 import com.moodvie.persistance.dao.UserMoodDao;
 
 /**
@@ -55,6 +57,14 @@ public abstract class AbstractDaoFactory {
 
     abstract public WatchLaterDao getWatchLaterDao();
 
+    /**
+     * Permet de récupérer une instance de RatingDao
+     * @return une instance de RatingDao
+     */
+    abstract public RatingDao getRatingDao();
+
+
     //ajout lucas
     abstract public UserMoodDao getUserMoodDao();
+
 }
